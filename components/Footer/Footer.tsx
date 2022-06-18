@@ -44,7 +44,7 @@ const Footer = ({ w }: FooterProps) => {
                   <Link key={`menuitem${ii}`} href={_href} passHref>
                     <div
                       className={`${styles.menu_item} my-1.5 cursor-pointer`}
-                      onClick={() => setIsOpen(false)}
+                      // onClick={() => setIsOpen(false)}
                     >
                       {_title}
                     </div>
