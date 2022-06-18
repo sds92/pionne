@@ -1,0 +1,1 @@
+export * as SVGLocal from './svg.local'

@@ -1,17 +1,15 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
-import { MainBanner } from 'components';
 import type { NextPage } from 'next';
-import Products from './products';
+import { About } from 'components';
 
-const Home: NextPage = () => {
+const AboutPage: NextPage = () => {
   return (
     <>
-      <MainBanner />
-      <Products/>
+      <About />
     </>
   );
 };
 
-export default Home;
+export default AboutPage;

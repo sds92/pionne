@@ -1,0 +1,40 @@
+.title {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 120%;
+  /* or 38px */
+
+  font-feature-settings: 'pnum' on, 'lnum' on;
+
+  /* GrayScale/Body */
+
+  color: #333333;
+}
+.block_title {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+}
+.block_text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+}
+.consultations_title {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 120%;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #333333;
+}
+.consultations_text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+} 
