@@ -1,0 +1,14 @@
+.title {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 120%;
+  /* or 38px */
+
+  font-feature-settings: 'pnum' on, 'lnum' on;
+
+  /* GrayScale/Body */
+
+  color: #333333;
+}

@@ -4,17 +4,25 @@ import { CONTACTS } from 'configs/app';
 import { MENU } from 'configs/pageData';
 import styles from './Footer.module.css';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 type FooterProps = {
   w: number;
 };
 
 const Footer = ({ w }: FooterProps) => {
+  const router = useRouter();
+  const isContacts = router.route === '/contacts';
+  const isProduct = /\/products\//.test(router.route)
   return (
     <footer className={`flex flex-col border-t`}>
-      <div className={`${styles.contact_title} mt-10 px-4`}>
-        Остались вопросы? <br /> Напишите нам в телеграм
-      </div>
+      {isContacts || isProduct ? (
+        <div className={`${styles.is_contacts} text-center px-8 py-8`}>Подбираем лучший уход<br/> для вашей кожи в рамках<br/> онлайн консультаций</div>
+      ) : (
+        <div className={`${styles.contact_title} mt-10 px-4`}>
+          Остались вопросы? <br /> Напишите нам в телеграм
+        </div>
+      )}
       <div
         className={`${styles.contact_button} rounded-full border w-min mx-auto py-2 px-4 my-6 border-black cursor-pointer`}
       >

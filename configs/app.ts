@@ -1,6 +1,6 @@
 export const CONTACTS = {
   phones: ['+00000000000'],
-  emails: ['test@test.ru'],
+  emails: ['mail@pionne.ru'],
   adresses: [
     {
       title: 'Склад',
@@ -11,12 +11,14 @@ export const CONTACTS = {
   socials: [
     {
       icon: 'Instagram',
-      href: '',
+      href: '@pionne.ru',
     },
     {
       icon: 'Telegram',
-      href: '',
+      href: 't.me/pionne.ru',
     },
   ],
   copyright: '2022 (c) Все права защищены'
 };
+
+export const API = 'http://localhost/pionne/wordpress/wp-json/wp/v2/products_pionne'

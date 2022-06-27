@@ -13,6 +13,7 @@ type SMProps = {
 
 const SM = ({ handleMenu }: SMProps) => {
   const router = useRouter();
+  console.log("🚀 ~ file: SM.tsx ~ line 16 ~ SM ~ router", router)
   const { lockScroll, unlockScroll } = useScrollLock();
   const [isOpen, setIsOpen] = handleMenu;
   const isMain = router.route === '/' ? true : false
@@ -34,15 +35,16 @@ const SM = ({ handleMenu }: SMProps) => {
                 <div className={`${styles.submenu_title} pb-2`}>{title}</div>
                 <div className={`flex flex-col`}>
                   {items.map(([_title, _href, option], ii) => {
+                    console.log("🚀 ~ file: SM.tsx ~ line 37 ~ {items.map ~ _href", _href)
                     return (
-                      <Link key={`menuitem${ii}`} href={_href} passHref>
+                      <div key={`menuitem${ii}`} onClick={() => router.replace(`/${_href}`)}>
                         <div
                           className={`${styles.menu_item} my-1.5 cursor-pointer`}
                           onClick={() => setIsOpen(false)}
                         >
                           {_title}
                         </div>
-                      </Link>
+                      </div>
                     );
                   })}
                 </div>

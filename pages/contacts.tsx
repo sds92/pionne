@@ -1,7 +1,12 @@
 import type { NextPage } from 'next';
+import { Contacts } from 'components';
 
-const Contacts: NextPage = () => {
-  return <></>;
+const ContactsPage: NextPage = () => {
+  return (
+    <>
+      <Contacts />
+    </>
+  );
 };
 
-export default Contacts;
+export default ContactsPage;
