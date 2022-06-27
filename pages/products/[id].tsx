@@ -35,15 +35,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const allPosts: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/products_pionne')
-    .then((res) => res.json())
-    .catch((err) => fakeAllPosts);
-  const categories: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/categories')
-    .then((res) => res.json())
-    .catch((err) => fakeCategories);
-  const tags: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/tags')
-    .then((res) => res.json())
-    .catch((err) => fakeTags);
+  // const allPosts: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/products_pionne')
+  //   .then((res) => res.json())
+  //   .catch((err) => fakeAllPosts);
+  // const categories: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/categories')
+  //   .then((res) => res.json())
+  //   .catch((err) => fakeCategories);
+  // const tags: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/tags')
+  //   .then((res) => res.json())
+  //   .catch((err) => fakeTags);
+  const allPosts = fakeAllPosts;
+  const categories = fakeCategories;
+  const tags = fakeTags;
   const res = transform(allPosts, categories, tags).find((item: any) => item.id.toString() === params?.id);
   return {
     props: {
