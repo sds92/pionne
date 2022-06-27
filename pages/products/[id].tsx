@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { Product } from 'components';
 import { transform } from 'utils/transform';
+import { fakeAllPosts, fakeCategories, fakeTags } from 'fakedata';
 
 const ProductPage: NextPage = (props) => {
   // @ts-ignore
@@ -34,16 +35,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const allPosts = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/products_pionne').then(
-    (res) => res.json()
-  );
-  console.log("🚀 ~ file: [id].tsx ~ line 40 ~ constgetStaticProps:GetStaticProps= ~ allPosts", allPosts)
-  const categories = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/categories').then((res) =>
-    res.json()
-  );
-  console.log("🚀 ~ file: [id].tsx ~ line 44 ~ constgetStaticProps:GetStaticProps= ~ categories", categories)
-  const tags = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/tags').then((res) => res.json());
-  console.log("🚀 ~ file: [id].tsx ~ line 46 ~ constgetStaticProps:GetStaticProps= ~ tags", tags)
+  const allPosts: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/products_pionne')
+    .then((res) => res.json())
+    .catch((err) => fakeAllPosts);
+  const categories: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/categories')
+    .then((res) => res.json())
+    .catch((err) => fakeCategories);
+  const tags: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/tags')
+    .then((res) => res.json())
+    .catch((err) => fakeTags);
   const res = transform(allPosts, categories, tags).find((item: any) => item.id.toString() === params?.id);
   return {
     props: {
