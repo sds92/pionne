@@ -19,18 +19,18 @@ const ProductsPage: NextPage = (props) => {
 export default ProductsPage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const allPosts: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/products_pionne')
-  //   .then((res) => res.json())
-  //   .catch((err) => fakeAllPosts);
-  // const categories: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/categories')
-  //   .then((res) => res.json())
-  //   .catch((err) => fakeCategories);
-  // const tags: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/tags')
-  //   .then((res) => res.json())
-  //   .catch((err) => fakeTags);
-  const allPosts = fakeAllPosts;
-  const categories = fakeCategories;
-  const tags = fakeTags;
+  const allPosts: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/products_pionne')
+    .then((res) => res.json())
+    .catch((err) => fakeAllPosts);
+  const categories: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/categories')
+    .then((res) => res.json())
+    .catch((err) => fakeCategories);
+  const tags: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/tags')
+    .then((res) => res.json())
+    .catch((err) => fakeTags);
+  // const allPosts = fakeAllPosts;
+  // const categories = fakeCategories;
+  // const tags = fakeTags;
   const res = transform(allPosts, categories, tags);
   return {
     props: {
