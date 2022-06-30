@@ -72,9 +72,9 @@ const ProductList = ({ data }: ProductListProps) => {
         return (
           <>
             <div key={`product${i}`} className={`flex flex-col p-4 gap-4`}>
-              <Link href={`products/${product.id}`} passHref>
-                {width < 640 && <MobileSlider images={product.images} />}
-              </Link>
+              
+                {width < 640 && <MobileSlider id={product.id} images={product.images} />}
+              
               <Link href={`products/${product.id}`} passHref>
                 <div className={`${styles.product_title}`}>{product.title}</div>
               </Link>

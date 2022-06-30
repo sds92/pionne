@@ -28,7 +28,11 @@ export type Product = {
   };
 };
 
-const Home: NextPage<Product[]> = (products: Product[]) => {
+type HomePageProps = {
+  products: Product[];
+};
+
+const Home: NextPage<HomePageProps> = ({ products }: HomePageProps) => {
   return (
     <>
       <MainBanner />

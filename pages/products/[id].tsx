@@ -25,7 +25,13 @@ export type ProductType = {
     }[];
   };
 };
-const ProductPage = (product: ProductType) => {
+
+type ProductPageProps = {
+  product: ProductType;
+};
+
+const ProductPage = ({ product }: ProductPageProps) => {
+console.log("🚀 ~ file: [id].tsx ~ line 34 ~ ProductPage ~ product", product)
   return (
     <>
       <Product data={product} />
@@ -70,7 +76,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // const res = transform(allPosts, categories, tags).find((item: any) => item.id.toString() === params?.id);
   return {
     props: {
-      products,
+      product: products.find((item: any) => item.id.toString() === params?.id),
     },
   };
 };
