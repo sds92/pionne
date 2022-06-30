@@ -3,13 +3,32 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { Product } from 'components';
 import { transform } from 'utils/transform';
 import { fakeAllPosts, fakeCategories, fakeTags } from 'fakedata';
+import fs from 'fs';
 
-const ProductPage: NextPage = (props) => {
-  // @ts-ignore
-  const data = props.res;
+export type ProductType = {
+  id: number;
+  category: string;
+  images: string[];
+  title: string;
+  meta: {
+    description: string;
+    keywords: string;
+  };
+  price: number;
+  info: {
+    description: string;
+    v: string;
+    special: string[];
+    misc: {
+      title: string;
+      value: string;
+    }[];
+  };
+};
+const ProductPage = (product: ProductType) => {
   return (
     <>
-      <Product data={data} />
+      <Product data={product} />
     </>
   );
 };
@@ -17,11 +36,11 @@ const ProductPage: NextPage = (props) => {
 export default ProductPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allPosts = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/products_pionne').then(
-    (res) => res.json()
-  ).catch((err) => fakeAllPosts);
-
-  const paths = allPosts.map((item: any) => {
+  // const allPosts = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/products_pionne').then(
+  //   (res) => res.json()
+  // ).catch((err) => fakeAllPosts);
+  const { products } = require('data/products.ts');
+  const paths = products.map((item: any) => {
     return {
       params: {
         id: item.id.toString(),
@@ -35,22 +54,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const allPosts: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/products_pionne')
-    .then((res) => res.json())
-    .catch((err) => fakeAllPosts);
-  const categories: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/categories')
-    .then((res) => res.json())
-    .catch((err) => fakeCategories);
-  const tags: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/tags')
-    .then((res) => res.json())
-    .catch((err) => fakeTags);
+  // const allPosts: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/products_pionne')
+  //   .then((res) => res.json())
+  //   .catch((err) => fakeAllPosts);
+  // const categories: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/categories')
+  //   .then((res) => res.json())
+  //   .catch((err) => fakeCategories);
+  // const tags: any = await fetch('http://localhost/pionne/wordpress/wp-json/wp/v2/tags')
+  //   .then((res) => res.json())
+  //   .catch((err) => fakeTags);
   // const allPosts = fakeAllPosts;
   // const categories = fakeCategories;
   // const tags = fakeTags;
-  const res = transform(allPosts, categories, tags).find((item: any) => item.id.toString() === params?.id);
+  const { products } = require('data/products.ts');
+  // const res = transform(allPosts, categories, tags).find((item: any) => item.id.toString() === params?.id);
   return {
     props: {
-      res,
+      products,
     },
   };
 };

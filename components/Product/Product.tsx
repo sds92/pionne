@@ -1,18 +1,13 @@
 import React from 'react';
 import { BreadCrumbs } from 'components';
 import styles from './Product.module.css';
+import { Product } from 'pages/index';
 
-export interface IProduct {
-  data: {
-    id: string;
-    categories: string[];
-    description: string;
-    price: string[];
-    title: string;
-  };
-}
+type ProductProps = {
+  data: Product;
+};
 
-const Product = ({ data }: IProduct) => {
+const Product = ({ data }: ProductProps) => {
   const breadCrumbs = [
     ['Главная', '/'],
     [`${data.title}`, `${data.id}`],
@@ -24,8 +19,10 @@ const Product = ({ data }: IProduct) => {
       <div className={`${styles.product_title}`}>{data.title}</div>
       <div
         className={`${styles.product_description}`}
-        dangerouslySetInnerHTML={{ __html: data.description }}
-      ></div>
+        // dangerouslySetInnerHTML={{ __html: data.description }}
+      >
+        {data.info.description}
+      </div>
       <div className={`flex w-full justify-between items-center py-4`}>
         <div className={`${styles.product_price}`}>{data.price}</div>
         <div className={`${styles.product_to_cart} rounded-full px-4 py-2 bg-black cursor-pointer`}>

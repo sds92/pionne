@@ -1,22 +1,16 @@
 import React from 'react';
 import { SliderMenu, ProductList } from './components';
+import { Product } from 'pages/index';
 
-export interface IData {
-  data: {
-    id: string;
-    categories: string[];
-    description: string;
-    price: string[];
-    title: string;
-  }[];
-}
+type ProductProps = {
+  data: Product[];
+};
 
-
-const Products = ({ data }: IData) => {
+const Products = ({ data }: ProductProps) => {
   return (
     <div className={`flex flex-col`}>
-      <SliderMenu />
-      <ProductList data={data}/>
+      {/* <SliderMenu data={data} /> */}
+      <ProductList data={data} />
     </div>
   );
 };
