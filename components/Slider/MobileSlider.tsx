@@ -22,8 +22,8 @@ const MobileSlider = ({ images, id }: PropsType) => {
             <Link key={`neighbourhood-jk-${index}`} href={`products/${id}`} passHref>
               <div className='pr-[16px]'>
                 <div
-                  style={{ width: `${width - 20}px` }}
-                  className={`relative aspect-[280/366]  rounded-[50px] overflow-hidden`}
+                  style={{ width: `${width - 35}px`, height: 'auto' }}
+                  className={`relative aspect-[250/380]  rounded-[50px] overflow-hidden`}
                 >
                   <Image alt={``} src={src} layout={`fill`} />
                 </div>

@@ -91,7 +91,7 @@ const ProductList = ({ data }: ProductListProps) => {
               </div>
               {i === 1 && (
                 <>
-                  <div className={`relative aspect-[287/262] w-full my-4`}>
+                  <div className={`relative aspect-[300/250] w-full my-4`}>
                     <Image className={`-z-10 rounded-[50px] overflow-hidden`} alt={``} src={`/images/productlist_001.webp`} layout={`fill`} />
                     <div className={`${styles.separator_bg} w-full h-full absolute -z-10 rounded-[50px] overflow-hidden`}></div>
                     <div className={`rounded-[50px] border border-[#B2C0D1] w-full h-full absolute translate-x-4 -translate-y-4`}></div>
