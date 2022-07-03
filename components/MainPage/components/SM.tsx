@@ -11,7 +11,7 @@ const SM = ({}: SMProps) => {
       className={`flex flex-col justify-start items-center min-h-screen relative cursor-default bg-[#FFF4F4]`}
     >
       <div className={`${styles.title} px-[31px] py-[45px] z-30`}>{MAIN_PAGE.title}</div>
-      <div className={`w-full flex items-center justify-center z-30`}>
+      <div className={`w-full flex items-center justify-center z-30 ${styles.rotating}`}>
         <SVGLocal.Decor />
       </div>
       <div className={`absolute w-full h-auto aspect-[345/517] bottom-[10%] z-10`}>

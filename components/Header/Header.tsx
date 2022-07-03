@@ -10,7 +10,7 @@ type HeaderProps = {
 const Header = ({ w, handleMenu }: HeaderProps) => {
   const router = useRouter();
   return (
-    <header className={`fixed w-full z-50`}>
+    <header className={`fixed w-full z-50 border-b`}>
       {w > 600 ? <LG /> : <SM handleMenu={handleMenu} />}
     </header>
   );
