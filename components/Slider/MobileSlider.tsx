@@ -23,12 +23,12 @@ const MobileSlider = ({ images, id, children }: PropsType) => {
           : images?.map((src, index) => {
               return (
                 <Link key={`neighbourhood-jk-${index}`} href={`products/${id}`} passHref>
-                  <div className='pr-[16px]'>
+                  <div className={`px-4`}>
                     <div
-                      style={{ width: `${width}px`, height: `${width*300/250}px`}}
+                      style={{ width: `${width - 50}px`, height: `${width*300/250}px`}}
                       className={`relative rounded-[50px] overflow-hidden`}
                     >
-                      <Image alt={``} src={src} layout={`fill`} objectFit={`contain`} />
+                      <Image alt={``} src={src} layout={`fill`} objectFit={`cover`} />
                     </div>
                   </div>
                 </Link>

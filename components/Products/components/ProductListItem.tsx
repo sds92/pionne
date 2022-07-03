@@ -30,14 +30,14 @@ const ProductListItem = ({ product, i, comments }: ProductListItemProps) => {
 
   return (
     <>
-      <div id={product.id.toString()} ref={ref} key={`product${i}`} className={`flex flex-col p-4 gap-4`}>
+      <div id={product.id.toString()} ref={ref} key={`product${i}`} className={`flex flex-col gap-4 py-4`}>
         {width < 640 && <MobileSlider id={product.id} images={product.images} />}
 
         <Link href={`products/${product.id}`} passHref>
-          <div className={`${styles.product_title}`}>{product.title}</div>
+          <div className={`${styles.product_title} px-4`}>{product.title}</div>
         </Link>
-        <div className={`${styles.product_description}`}>{product.info.description}</div>
-        <div className={`flex w-full justify-between items-center border-b pb-8`}>
+        <div className={`${styles.product_description} px-4`}>{product.info.description}</div>
+        <div className={`flex w-full justify-between items-center border-b pb-8 px-4`}>
           <div className={`${styles.product_price}`}>{product.price}&nbsp;р</div>
           <div className={`${styles.product_to_cart} rounded-full px-8 py-4 bg-black cursor-pointer`}>
             В корзину

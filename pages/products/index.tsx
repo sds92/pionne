@@ -8,32 +8,14 @@ import { fakeAllPosts, fakeCategories, fakeTags } from 'fakedata';
 import fs from 'fs';
 
 export type ProductsPageProps = {
-  products: {
-    id: number;
-    category: string;
-    images: string[];
-    title: string;
-    meta: {
-      description: string;
-      keywords: string;
-    };
-    price: number;
-    info: {
-      description: string;
-      v: string;
-      special: string[];
-      misc: {
-        title: string;
-        value: string;
-      }[];
-    };
-  }[];
+  products: IProduct[];
+  comments: IComments[];
 };
 
-const ProductsPage: NextPage<ProductsPageProps> = ({ products }: ProductsPageProps) => {
+const ProductsPage: NextPage<ProductsPageProps> = ({ products, comments }: ProductsPageProps) => {
   return (
     <>
-      <Products data={products} />
+      <Products data={products} comments={comments}/>
     </>
   );
 };
@@ -54,10 +36,12 @@ export const getStaticProps: GetStaticProps = async () => {
   // const categories = fakeCategories;
   // const tags = fakeTags;
   const { products } = require('data/products.ts');
+  const { comments } = require('data/comments.ts');
   // const res = transform(allPosts, categories, tags);
   return {
     props: {
       products,
+      comments
     },
   };
 };

@@ -89,7 +89,7 @@ const Carousel = ({
 
   const handleSnap = () => {
     if (innerWrapperRef.current && allowSnapping) {
-      const childWidth = innerWrapperRef.current.getBoundingClientRect().width / children.length;
+      const childWidth = innerWrapperRef.current.getBoundingClientRect().width / (children as [])?.length;
       const dif = translateValue % childWidth;
       const currentIndex = Math.abs(Math.ceil(translateValue / childWidth));
 

@@ -10,7 +10,7 @@ type ProductListProps = {
 
 const ProductList = ({ data }: ProductListProps) => {
   return (
-    <div className={`flex flex-col`}>
+    <div className={`flex flex-col overflow-hidden`}>
       {data?.map((product, i) => {
         return <ProductListItem key={`pr${i}`} product={product} i={i} comments={comments}/>;
       })}

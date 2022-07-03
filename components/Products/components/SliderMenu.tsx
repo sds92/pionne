@@ -47,7 +47,7 @@ const SliderMenu = ({ data }: SliderMenuProps) => {
             return (
               <div
                 key={`menuItem${i}`}
-                className={`${styles.menuslider_item} cursor-pointer uppercase`}
+                className={`${styles.menuslider_item} cursor-pointer uppercase whitespace-nowrap`}
                 onClick={() => {
                   setCurCategory(menuItem);
                   handleScroll(menuItem);
@@ -66,7 +66,7 @@ const SliderMenu = ({ data }: SliderMenuProps) => {
               return (
                 <div
                   key={`menuitem${i}`}
-                  className={`${styles.menuslider_item} cursor-pointer uppercase`}
+                  className={`${styles.menuslider_item} cursor-pointer uppercase whitespace-nowrap`}
                   onClick={() => {
                     setCurCategory(menuItem);
                     handleScroll(menuItem);
