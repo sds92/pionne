@@ -25,7 +25,7 @@ const SM = ({ handleMenu }: SMProps) => {
   return (
     <>
       {isOpen ? (
-        <div className={`flex flex-wrap min-h-screen px-4 pb-6 gap-14 relative bg-[#FFF4F4]`}>
+        <div className={`z-[60] flex flex-wrap min-h-screen px-4 pb-6 gap-14 relative bg-[#FFF4F4]`}>
           <div className={`w-full h-[72px] flex items-center`}>
             <Svg.Icons.Close className={`cursor-pointer`} onClick={() => setIsOpen(false)} />
           </div>

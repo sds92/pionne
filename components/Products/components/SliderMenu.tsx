@@ -1,16 +1,85 @@
 import React from 'react';
 import { MAIN_PAGE } from 'configs/pageData';
-type SliderMenuProps = {};
+import { useStore } from 'lib/store';
+import useShow from 'utils/useShow';
 
-const SliderMenu = ({}: SliderMenuProps) => {
+import styles from '../Products.module.css';
+
+type SliderMenuProps = {
+  data: IProduct[];
+};
+
+const SliderMenu = ({ data }: SliderMenuProps) => {
+  const { setCurCategory } = useStore();
+  const divRef = React.useRef<HTMLDivElement>(null);
+  const [show, setShow] = React.useState<boolean>(false);
+  const isShow = useShow(divRef, 72);
+
+  const handleScroll = (menuItem: string) => {
+    if (menuItem.toLocaleLowerCase() === 'все') {
+      document?.getElementById((data[0].id).toString())?.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+    if (document !== undefined) {
+      const id = data.find((product) => product.category.toLowerCase() === menuItem.toLowerCase())?.id;
+      const y = document?.getElementById((id as number).toString())?.offsetTop;
+      y &&
+        window.scrollTo({
+          top: y - 100,
+          behavior: 'smooth',
+        });
+    }
+  };
+
+  React.useEffect(() => {
+    if (isShow) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  }, [isShow]);
+
   return (
-    <div className={`w-full relative`}>
-      <div className={`flex `}>
-        {MAIN_PAGE.sliderMenu.map(([title, id], i) => {
-          return <div key={`menuitem${i}`}>{title}</div>;
-        })}
+    <>
+      <div ref={divRef} className={`w-full relative`}>
+        <div className={`flex gap-4`}>
+          {MAIN_PAGE.sliderMenu.map((menuItem, i) => {
+            return (
+              <div
+                key={`menuItem${i}`}
+                className={`${styles.menuslider_item} cursor-pointer uppercase`}
+                onClick={() => {
+                  setCurCategory(menuItem);
+                  handleScroll(menuItem);
+                }}
+              >
+                {menuItem}
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+      {show && (
+        <div className={`w-full z-50 fixed top-[72px] bg-white`}>
+          <div className={`flex gap-4`}>
+            {MAIN_PAGE.sliderMenu.map((menuItem, i) => {
+              return (
+                <div
+                  key={`menuitem${i}`}
+                  className={`${styles.menuslider_item} cursor-pointer uppercase`}
+                  onClick={() => {
+                    setCurCategory(menuItem);
+                    handleScroll(menuItem);
+                  }}
+                >
+                  {menuItem}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

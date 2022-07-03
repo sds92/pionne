@@ -1,42 +1,21 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../styles/Home.module.css';
 import { GetStaticProps } from 'next';
-import fs from 'fs';
-import { MainBanner } from 'components';
+import { MainBanner, Products } from 'components';
 import type { NextPage } from 'next';
-import { ProductList } from 'components/Products/components';
-
-export type Product = {
-  id: number;
-  category: string;
-  images: string[];
-  title: string;
-  meta: {
-    description: string;
-    keywords: string;
-  };
-  price: number;
-  info: {
-    description: string;
-    v: string;
-    special: string[];
-    misc: {
-      title: string;
-      value: string;
-    }[];
-  };
-};
+import useWindowSize from 'utils/useWindowSize';
 
 type HomePageProps = {
-  products: Product[];
+  products: IProduct[];
+  comments: IComments[];
 };
 
-const Home: NextPage<HomePageProps> = ({ products }: HomePageProps) => {
+const Home: NextPage<HomePageProps> = ({ products, comments }: HomePageProps) => {
+  const { width } = useWindowSize();
   return (
     <>
-      <MainBanner />
-      <ProductList data={products} />
+      {width < 600 ? <MainBanner.SM /> : <MainBanner.LG />}
+      <Products data={products} comments={comments} />
     </>
   );
 };
@@ -58,10 +37,11 @@ export const getStaticProps: GetStaticProps = async () => {
   // const tags = fakeTags;
   // const products = await JSON.parse(fs.readFileSync('data/products.ts', 'utf8'));
   const { products } = require('data/products.ts');
-  // const res = transform(allPosts, categories, tags);
+  const { comments } = require('data/comments.ts');
   return {
     props: {
       products,
+      comments,
     },
   };
 };

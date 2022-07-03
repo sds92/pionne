@@ -8,29 +8,32 @@ import Link from 'next/link';
 
 // type Props = { neighbourhoodJkList: NeighbourhoodJk[] };
 type PropsType = {
-  images: string[];
-  id: number;
+  images?: string[];
+  id?: number;
+  children?: React.ReactNode;
 };
 
-const MobileSlider = ({ images, id }: PropsType) => {
+const MobileSlider = ({ images, id, children }: PropsType) => {
   const { width } = useWindowSize();
   return (
     <div className='mb-[46px]'>
       <Carousel mode='HORISONTAL' allowSnapping={true}>
-        {images.map((src, index) => {
-          return (
-            <Link key={`neighbourhood-jk-${index}`} href={`products/${id}`} passHref>
-              <div className='pr-[16px]'>
-                <div
-                  style={{ width: `${width - 35}px`, height: 'auto' }}
-                  className={`relative aspect-[250/380]  rounded-[50px] overflow-hidden`}
-                >
-                  <Image alt={``} src={src} layout={`fill`} />
-                </div>
-              </div>
-            </Link>
-          );
-        })}
+        {children
+          ? children
+          : images?.map((src, index) => {
+              return (
+                <Link key={`neighbourhood-jk-${index}`} href={`products/${id}`} passHref>
+                  <div className='pr-[16px]'>
+                    <div
+                      style={{ width: `${width}px`, height: `${width*300/250}px`}}
+                      className={`relative rounded-[50px] overflow-hidden`}
+                    >
+                      <Image alt={``} src={src} layout={`fill`} objectFit={`contain`} />
+                    </div>
+                  </div>
+                </Link>
+              );
+            }) || null}
       </Carousel>
     </div>
   );

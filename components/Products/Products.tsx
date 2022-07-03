@@ -1,16 +1,16 @@
 import React from 'react';
 import { SliderMenu, ProductList } from './components';
-import { Product } from 'pages/index';
 
 type ProductProps = {
-  data: Product[];
+  data: IProduct[];
+  comments: IComments[];
 };
 
-const Products = ({ data }: ProductProps) => {
+const Products = ({ data, comments }: ProductProps) => {
   return (
     <div className={`flex flex-col`}>
-      {/* <SliderMenu data={data} /> */}
-      <ProductList data={data} />
+      <SliderMenu data={data} />
+      <ProductList data={data} comments={comments}/>
     </div>
   );
 };

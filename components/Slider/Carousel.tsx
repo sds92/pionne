@@ -5,7 +5,7 @@ const Carousel = ({
   mode = 'HORISONTAL',
   allowSnapping = false,
 }: {
-  children: JSX.Element[];
+  children: React.ReactNode;
   mode?: 'HORISONTAL' | 'VERTICAL';
   allowSnapping?: boolean;
 }) => {
@@ -17,16 +17,12 @@ const Carousel = ({
   const innerWrapperRef = useRef<HTMLDivElement>(null);
 
   // handler for mouse
-  const handleMouseMove = (
-    e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
-  ) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
     const carouselRect = carouselRef.current?.getBoundingClientRect();
     const innerWrapperRect = innerWrapperRef.current?.getBoundingClientRect();
     if (e.buttons === 1 && carouselRect && innerWrapperRect) {
       const minTranslateX =
-        innerWrapperRect.width > carouselRect.width
-          ? -(innerWrapperRect.width - carouselRect.width)
-          : 0;
+        innerWrapperRect.width > carouselRect.width ? -(innerWrapperRect.width - carouselRect.width) : 0;
       // if (innerWrapperRef.current) {
       //   const childWidth =
       //     innerWrapperRef.current.getBoundingClientRect().width /
@@ -53,18 +49,14 @@ const Carousel = ({
   };
 
   // mobile touch handling
-  const [prevTouchVal, setPrevTouchVal] = useState<number | undefined>(
-    undefined
-  );
+  const [prevTouchVal, setPrevTouchVal] = useState<number | undefined>(undefined);
   const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
     const carouselRect = carouselRef.current?.getBoundingClientRect();
     const innerWrapperRect = innerWrapperRef.current?.getBoundingClientRect();
 
     if (prevTouchVal !== undefined && carouselRect && innerWrapperRect) {
       const minTranslateX =
-        innerWrapperRect.width > carouselRect.width
-          ? -(innerWrapperRect.width - carouselRect.width)
-          : 0;
+        innerWrapperRect.width > carouselRect.width ? -(innerWrapperRect.width - carouselRect.width) : 0;
       const touch = e.touches[0];
       const curX = touch.clientX;
       const dif = curX - prevTouchVal;
@@ -97,8 +89,7 @@ const Carousel = ({
 
   const handleSnap = () => {
     if (innerWrapperRef.current && allowSnapping) {
-      const childWidth =
-        innerWrapperRef.current.getBoundingClientRect().width / children.length;
+      const childWidth = innerWrapperRef.current.getBoundingClientRect().width / children.length;
       const dif = translateValue % childWidth;
       const currentIndex = Math.abs(Math.ceil(translateValue / childWidth));
 
@@ -120,26 +111,22 @@ const Carousel = ({
       onMouseMove={(e) => handleMouseMove(e)}
       onMouseUp={handleSnap}
       onTouchStart={(e) =>
-        setPrevTouchVal(
-          mode === 'HORISONTAL' ? e.touches[0].clientX : e.touches[0].clientY
-        )
+        setPrevTouchVal(mode === 'HORISONTAL' ? e.touches[0].clientX : e.touches[0].clientY)
       }
       onTouchEnd={(e) => {
         handleSnap();
         setPrevTouchVal(undefined);
       }}
       onTouchMove={(e) => handleTouchMove(e)}
-      className="overflow-hidden w-full "
+      className='overflow-hidden w-full '
     >
       <div
         draggable={false}
         style={{
           transform:
-            mode === 'HORISONTAL'
-              ? `translateX(${translateValue}px)`
-              : `translateY(${translateValue}px)`,
+            mode === 'HORISONTAL' ? `translateX(${translateValue}px)` : `translateY(${translateValue}px)`,
         }}
-        className="w-fit h-fit flex items-center justify-start relative"
+        className='w-fit h-fit flex items-center justify-start relative'
         ref={innerWrapperRef}
       >
         {children}
