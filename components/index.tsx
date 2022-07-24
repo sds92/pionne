@@ -6,4 +6,5 @@ export { default as Product } from './Product/Product';
 export { default as BreadCrumbs } from './BreadCrumbs/BreadCrums';
 export { default as About } from './About/About';
 export { default as Contacts } from './Contatcs/Contacts';
+export { default as Cart } from './Cart/Cart';
 export * as Svg from './Svg';

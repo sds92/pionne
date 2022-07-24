@@ -17,7 +17,13 @@ const SliderMenu = ({ data }: SliderMenuProps) => {
 
   const handleScroll = (menuItem: string) => {
     if (menuItem.toLocaleLowerCase() === 'все') {
-      document?.getElementById((data[0].id).toString())?.scrollIntoView({ behavior: 'smooth' });
+      const id = data[0].id.toString();
+      const y = document?.getElementById(id)?.offsetTop;
+      y &&
+        window.scrollTo({
+          top: y - 100,
+          behavior: 'smooth',
+        });
       return;
     }
     if (document !== undefined) {

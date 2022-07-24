@@ -5,17 +5,27 @@ import MobileSlider from 'components/Slider/MobileSlider';
 import useWindowSize from 'utils/useWindowSize';
 import styles from './Product.module.css';
 import Image from 'next/image';
+import { useCart } from 'store/useCart';
 
 type ProductProps = {
   data: IProduct;
 };
 
 const Product = ({ data }: ProductProps) => {
+  const { cart, setCart } = useCart();
   const { width } = useWindowSize();
   const breadCrumbs = [
     ['Главная', '/'],
     [`${data.title}`, `${data.id}`],
   ];
+
+  const handleAddToCart = () => {
+    const _cart: ICart = cart;
+    _cart.push({
+      id: data.id.toString(),
+    })
+    setCart(_cart)
+  };
   return (
     <div className={`flex flex-col gap-4 py-8 px-4`}>
       <BreadCrumbs data={breadCrumbs} />
@@ -51,7 +61,10 @@ const Product = ({ data }: ProductProps) => {
       </div>
       <div className={`flex w-full justify-between items-center py-4 border-b`}>
         <div className={`${styles.product_price}`}>{data.price}</div>
-        <div className={`${styles.product_to_cart} rounded-full px-4 py-2 bg-black cursor-pointer`}>
+        <div
+          className={`${styles.product_to_cart} rounded-full px-4 py-2 bg-black cursor-pointer`}
+          onClick={handleAddToCart}
+        >
           В корзину
         </div>
       </div>
@@ -67,7 +80,7 @@ const Product = ({ data }: ProductProps) => {
       </div>
       <div className={`flex flex-col`}>
         {data.info.misc.map(({ title, value }, i) => {
-          return <PopUp key={`misc${i}`} title={title} value={value}/>;
+          return <PopUp key={`misc${i}`} title={title} value={value} />;
         })}
       </div>
     </div>

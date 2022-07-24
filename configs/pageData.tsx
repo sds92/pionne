@@ -77,3 +77,11 @@ export const CONTACTS_PAGE = {
     ['Контакты', '/contatcs'],
   ],
 };
+
+export const CART_PAGE = {
+  title: 'Корзина',
+  breadCrumbs: [
+    ['Главная', '/'],
+    ['Корзина', '/cart'],
+  ],
+}

@@ -17,7 +17,7 @@ const MobileSlider = ({ images, id, children }: PropsType) => {
   const { width } = useWindowSize();
   return (
     <div className='mb-[46px]'>
-      <Carousel mode='HORISONTAL' allowSnapping={true}>
+      <Carousel mode='HORISONTAL' allowSnapping={true} >
         {children
           ? children
           : images?.map((src, index) => {

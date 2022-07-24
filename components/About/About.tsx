@@ -18,7 +18,7 @@ const About = ({}: AboutProps) => {
         {ABOUT_PAGE.blocks.map(({ title, text }, i) => {
           return (
             <div key={`textblock${i}`}>
-              <div className={`${styles.block_title}`}>{title}</div>
+              <div className={`${styles.block_title} pb-[8px]`}>{title}</div>
               <div className={`${styles.block_text}`}>{text}</div>
             </div>
           );

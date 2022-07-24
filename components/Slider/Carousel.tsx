@@ -1,36 +1,43 @@
-import React, { MouseEvent, TouchEvent, useRef, useState } from 'react';
+import useIntersectionObserver from 'utils/useIntersectionObserver';
+import React, { memo, MouseEvent, TouchEvent, useEffect, useMemo, useRef, useState } from 'react';
 
 const Carousel = ({
   children,
   mode = 'HORISONTAL',
   allowSnapping = false,
+  currentIndex,
+  getCurIndex,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   mode?: 'HORISONTAL' | 'VERTICAL';
   allowSnapping?: boolean;
+  currentIndex?: number;
+  getCurIndex?: (a: number) => void;
 }) => {
+  const [curIndex, setCurIndex] = React.useState<number>(currentIndex || 0);
   const [translateValue, setTranslateValue] = useState(0);
   const [direction, setDirection] = useState<'getNext' | 'getPrev'>('getPrev');
   const maxTranslateX = 0;
+  const numChildren = useMemo(() => {
+    return (children as [])?.length;
+  }, [children]);
+  // const [currentIndex, setCurrentIndex] = useState(0);
 
   const carouselRef = useRef<HTMLDivElement>(null);
   const innerWrapperRef = useRef<HTMLDivElement>(null);
+  const lastChildRef = useRef<HTMLDivElement>(null);
+
+  const observer = useIntersectionObserver(lastChildRef, { threshold: 1 });
+  const lastIsVisible = !!observer?.isIntersecting;
 
   // handler for mouse
   const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
     const carouselRect = carouselRef.current?.getBoundingClientRect();
     const innerWrapperRect = innerWrapperRef.current?.getBoundingClientRect();
+
     if (e.buttons === 1 && carouselRect && innerWrapperRect) {
       const minTranslateX =
         innerWrapperRect.width > carouselRect.width ? -(innerWrapperRect.width - carouselRect.width) : 0;
-      // if (innerWrapperRef.current) {
-      //   const childWidth =
-      //     innerWrapperRef.current.getBoundingClientRect().width /
-      //     children.length;
-
-      //   const dif = translateValue % childWidth;
-      //   console.log(dif);
-      // }
 
       setTranslateValue((prev) => {
         if (e.movementX > 0) {
@@ -39,6 +46,9 @@ const Carousel = ({
           }
           return Math.min(prev + e.movementX, maxTranslateX);
         } else {
+          if (lastIsVisible) {
+            return prev;
+          }
           if (direction !== 'getNext') {
             setDirection('getNext');
           }
@@ -59,7 +69,7 @@ const Carousel = ({
         innerWrapperRect.width > carouselRect.width ? -(innerWrapperRect.width - carouselRect.width) : 0;
       const touch = e.touches[0];
       const curX = touch.clientX;
-      const dif = curX - prevTouchVal;
+      const dif = touch.clientX - prevTouchVal;
 
       setTranslateValue((prev) => {
         if (dif > 0) {
@@ -68,6 +78,9 @@ const Carousel = ({
           }
           return Math.min(prev + dif, maxTranslateX);
         } else {
+          if (lastIsVisible) {
+            return prev;
+          }
           if (direction !== 'getNext') {
             setDirection('getNext');
           }
@@ -78,7 +91,7 @@ const Carousel = ({
     }
   };
   const snap = async (newTranslationValue: number) => {
-    const durationMs = 200;
+    const durationMs = 150;
     if (innerWrapperRef.current) {
       innerWrapperRef.current.style.transition = `all ${durationMs}ms ease-in`;
       setTranslateValue(newTranslationValue);
@@ -87,20 +100,29 @@ const Carousel = ({
     }
   };
 
+  useEffect(() => {
+    if (innerWrapperRef.current && allowSnapping && typeof curIndex === 'number') {
+      const childWidth = innerWrapperRef.current.getBoundingClientRect().width / (numChildren || 1);
+      const newTranslationValue = -(childWidth * curIndex);
+      snap(newTranslationValue);
+    }
+  }, [curIndex, allowSnapping, numChildren]);
+
   const handleSnap = () => {
     if (innerWrapperRef.current && allowSnapping) {
-      const childWidth = innerWrapperRef.current.getBoundingClientRect().width / (children as [])?.length;
+      const childWidth = innerWrapperRef.current.getBoundingClientRect().width / ((children as [])?.length || 1);
       const dif = translateValue % childWidth;
       const currentIndex = Math.abs(Math.ceil(translateValue / childWidth));
-
+      setCurIndex(Math.abs(Math.ceil(translateValue / childWidth)));
+      getCurIndex && getCurIndex(curIndex);
       if (Math.abs(dif) > childWidth / 8) {
         if (direction === 'getNext') {
-          snap(-(childWidth * (currentIndex + 1)));
+          snap(-(childWidth * (curIndex + 1)));
         } else {
-          snap(-(childWidth * currentIndex));
+          snap(-(childWidth * curIndex));
         }
       } else {
-        snap(-(childWidth * currentIndex));
+        snap(-(childWidth * curIndex));
       }
     }
   };
@@ -117,8 +139,10 @@ const Carousel = ({
         handleSnap();
         setPrevTouchVal(undefined);
       }}
-      onTouchMove={(e) => handleTouchMove(e)}
-      className='overflow-hidden w-full '
+      onTouchMove={(e) => {
+        handleTouchMove(e);
+      }}
+      className='w-full overflow-hidden touch-none cursor-grab active:cursor-grabbing'
     >
       <div
         draggable={false}
@@ -129,7 +153,17 @@ const Carousel = ({
         className='w-fit h-fit flex items-center justify-start relative'
         ref={innerWrapperRef}
       >
-        {children}
+        {(children as [])?.map((child, index) => {
+          return (
+            <div
+              ref={index === ((children as [])?.length || 1) - 1 ? lastChildRef : null}
+              // @ts-ignore
+              key={`carousel-${(child).key}-${index}`}
+            >
+              {child}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

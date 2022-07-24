@@ -6,6 +6,7 @@ import { MENU } from 'configs/pageData';
 import { CONTACTS } from 'configs/app';
 import styles from '../Header.module.css';
 import Link from 'next/link';
+import { useCart } from 'store/useCart';
 
 type SMProps = {
   handleMenu: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
@@ -13,10 +14,10 @@ type SMProps = {
 
 const SM = ({ handleMenu }: SMProps) => {
   const router = useRouter();
-  console.log("🚀 ~ file: SM.tsx ~ line 16 ~ SM ~ router", router)
   const { lockScroll, unlockScroll } = useScrollLock();
   const [isOpen, setIsOpen] = handleMenu;
-  const isMain = router.route === '/' ? true : false
+  const isMain = router.route === '/' ? true : false;
+  const { cart } = useCart();
 
   React.useEffect(() => {
     isOpen ? lockScroll() : unlockScroll();
@@ -35,7 +36,7 @@ const SM = ({ handleMenu }: SMProps) => {
                 <div className={`${styles.submenu_title} pb-2`}>{title}</div>
                 <div className={`flex flex-col`}>
                   {items.map(([_title, _href, option], ii) => {
-                    console.log("🚀 ~ file: SM.tsx ~ line 37 ~ {items.map ~ _href", _href)
+                    console.log('🚀 ~ file: SM.tsx ~ line 37 ~ {items.map ~ _href', _href);
                     return (
                       <div key={`menuitem${ii}`} onClick={() => router.replace(`/${_href}`)}>
                         <div
@@ -90,8 +91,12 @@ const SM = ({ handleMenu }: SMProps) => {
               }}
             />
           </div>
-          <div className={`w-1/6 flex items-center justify-center`}>
+          <div
+            className={`w-1/6 flex items-center justify-center relative `}
+            onClick={() => router.replace(`/cart`)}
+          >
             <Svg.Icons.Cart className={`cursor-pointer`} />
+            {cart.length > 0 && <div className={`cursor-pointer absolute flex items-center justify-center translate-y-1 text-white rounded-full bg-black w-4 h-4`}>{cart.length}</div>}
           </div>
         </div>
       )}
