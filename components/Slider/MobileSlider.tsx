@@ -9,7 +9,7 @@ import Link from 'next/link';
 // type Props = { neighbourhoodJkList: NeighbourhoodJk[] };
 type PropsType = {
   images?: string[];
-  id?: number;
+  id?: string;
   children?: React.ReactNode;
 };
 

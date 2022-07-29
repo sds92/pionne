@@ -1,8 +1,8 @@
 import create from 'zustand';
 
 interface IProductsStore {
-  cart: ICart;
-  setCart: (cart: ICart) => void;
+  cart: ICartItem[];
+  setCart: (cart: ICartItem[]) => void;
   getCart: () => void;
 }
 

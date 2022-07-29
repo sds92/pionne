@@ -6,7 +6,9 @@ import MobileSlider from 'components/Slider/MobileSlider';
 import { Separator } from './';
 import { useInView } from 'react-intersection-observer';
 import { useStore } from 'lib/store';
+import { useCart } from 'store/useCart';
 import styles from '../Products.module.css';
+import { addToCart } from 'utils';
 
 type ProductListItemProps = {
   i: number;
@@ -16,17 +18,22 @@ type ProductListItemProps = {
 
 const ProductListItem = ({ product, i, comments }: ProductListItemProps) => {
   const { curCategory, setCurCategory } = useStore();
+  const { cart, setCart } = useCart();
   const { width } = useWindowSize();
   const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
   });
 
+  const handleAddToCart = () => {
+    addToCart({ id: product.id, cart: cart, cb: setCart });
+  };
+
   React.useEffect(() => {
     if (inView) {
       () => setCurCategory(product.category);
     }
-  }, [inView]);
+  }, [inView, product.category, setCurCategory]);
 
   return (
     <>
@@ -39,7 +46,10 @@ const ProductListItem = ({ product, i, comments }: ProductListItemProps) => {
         <div className={`${styles.product_description} px-4`}>{product.info.description}</div>
         <div className={`flex w-full justify-between items-center border-b pb-8 px-4`}>
           <div className={`${styles.product_price}`}>{product.price}&nbsp;р</div>
-          <div className={`${styles.product_to_cart} rounded-full px-8 py-4 bg-black cursor-pointer`}>
+          <div
+            className={`${styles.product_to_cart} rounded-full px-8 py-4 bg-black cursor-pointer`}
+            onClick={handleAddToCart}
+          >
             В корзину
           </div>
         </div>

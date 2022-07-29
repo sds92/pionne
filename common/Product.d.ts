@@ -1,5 +1,5 @@
 interface IProduct {
-  id: number;
+  id: string;
   category: string;
   images: string[];
   title: string;

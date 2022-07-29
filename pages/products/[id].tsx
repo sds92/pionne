@@ -5,29 +5,29 @@ import { transform } from 'utils/transform';
 import { fakeAllPosts, fakeCategories, fakeTags } from 'fakedata';
 import fs from 'fs';
 
-export type ProductType = {
-  id: number;
-  category: string;
-  images: string[];
-  title: string;
-  meta: {
-    description: string;
-    keywords: string;
-  };
-  price: number;
-  info: {
-    description: string;
-    v: string;
-    special: string[];
-    misc: {
-      title: string;
-      value: string;
-    }[];
-  };
-};
+// export type ProductType = {
+//   id: string;
+//   category: string;
+//   images: string[];
+//   title: string;
+//   meta: {
+//     description: string;
+//     keywords: string;
+//   };
+//   price: number;
+//   info: {
+//     description: string;
+//     v: string;
+//     special: string[];
+//     misc: {
+//       title: string;
+//       value: string;
+//     }[];
+//   };
+// };
 
 type ProductPageProps = {
-  product: ProductType;
+  product: IProduct;
 };
 
 const ProductPage = ({ product }: ProductPageProps) => {
@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // const res = transform(allPosts, categories, tags).find((item: any) => item.id.toString() === params?.id);
   return {
     props: {
-      product: products.find((item: any) => item.id.toString() === params?.id),
+      product: products.find((item: any) => item.id === params?.id),
     },
   };
 };

@@ -6,6 +6,7 @@ import useWindowSize from 'utils/useWindowSize';
 import styles from './Product.module.css';
 import Image from 'next/image';
 import { useCart } from 'store/useCart';
+import { addToCart } from 'utils';
 
 type ProductProps = {
   data: IProduct;
@@ -20,11 +21,7 @@ const Product = ({ data }: ProductProps) => {
   ];
 
   const handleAddToCart = () => {
-    const _cart: ICart = cart;
-    _cart.push({
-      id: data.id.toString(),
-    })
-    setCart(_cart)
+    addToCart({ id: data.id, cart: cart, cb: setCart });
   };
   return (
     <div className={`flex flex-col gap-4 py-8 px-4`}>

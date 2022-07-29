@@ -28,7 +28,8 @@ const SliderMenu = ({ data }: SliderMenuProps) => {
     }
     if (document !== undefined) {
       const id = data.find((product) => product.category.toLowerCase() === menuItem.toLowerCase())?.id;
-      const y = document?.getElementById((id as number).toString())?.offsetTop;
+      if (!id) return
+      const y = document?.getElementById(id)?.offsetTop;
       y &&
         window.scrollTo({
           top: y - 100,

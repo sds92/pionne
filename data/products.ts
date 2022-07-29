@@ -1,6 +1,6 @@
 export const products = [
   {
-    id: 1,
+    id: 'p1',
     category: 'Для тела',
     images: [
       '/images/products/pionne_001.webp',
@@ -37,7 +37,7 @@ export const products = [
     },
   },
   {
-    id: 2,
+    id: 'p2',
     category: 'Для тела',
     images: [
       '/images/products/pionne_001.webp',
@@ -74,7 +74,7 @@ export const products = [
     },
   },
   {
-    id: 3,
+    id: 'p3',
     category: 'Для тела',
     images: [
       '/images/products/pionne_001.webp',
@@ -111,7 +111,7 @@ export const products = [
     },
   },
   {
-    id: 4,
+    id: 'p4',
     category: 'Для тела',
     images: [
       '/images/products/pionne_001.webp',
@@ -148,7 +148,7 @@ export const products = [
     },
   },
   {
-    id: 5,
+    id: 'p5',
     category: 'Для тела',
     images: [
       '/images/products/pionne_001.webp',
@@ -185,7 +185,7 @@ export const products = [
     },
   },
   {
-    id: 6,
+    id: 'p6',
     category: 'Для волос',
     images: [
       '/images/products/pionne_001.webp',
@@ -222,7 +222,7 @@ export const products = [
     },
   },
   {
-    id: 7,
+    id: 'p7',
     category: 'Для волос',
     images: [
       '/images/products/pionne_001.webp',
@@ -259,7 +259,7 @@ export const products = [
     },
   },
   {
-    id: 8,
+    id: 'p8',
     category: 'Для волос',
     images: [
       '/images/products/pionne_001.webp',
@@ -296,7 +296,7 @@ export const products = [
     },
   },
   {
-    id: 9,
+    id: 'p9',
     category: 'Для волос',
     images: [
       '/images/products/pionne_001.webp',
@@ -333,7 +333,7 @@ export const products = [
     },
   },
   {
-    id: 10,
+    id: 'p10',
     category: 'Для волос',
     images: [
       '/images/products/pionne_001.webp',
@@ -370,7 +370,7 @@ export const products = [
     },
   },
   {
-    id: 11,
+    id: 'p11',
     category: 'Для волос',
     images: [
       '/images/products/pionne_001.webp',
@@ -407,7 +407,7 @@ export const products = [
     },
   },
   {
-    id: 12,
+    id: 'p12',
     category: 'Для лица',
     images: [
       '/images/products/pionne_001.webp',
@@ -444,7 +444,7 @@ export const products = [
     },
   },
   {
-    id: 13,
+    id: 'p13',
     category: 'Для лица',
     images: [
       '/images/products/pionne_001.webp',
@@ -481,7 +481,7 @@ export const products = [
     },
   },
   {
-    id: 14,
+    id: 'p14',
     category: 'Для лица',
     images: [
       '/images/products/pionne_001.webp',
@@ -518,7 +518,7 @@ export const products = [
     },
   },
   {
-    id: 15,
+    id: 'p15',
     category: 'Для лица',
     images: [
       '/images/products/pionne_001.webp',
@@ -555,7 +555,7 @@ export const products = [
     },
   },
   {
-    id: 16,
+    id: 'p16',
     category: 'Для лица',
     images: [
       '/images/products/pionne_001.webp',
@@ -592,7 +592,7 @@ export const products = [
     },
   },
   {
-    id: 17,
+    id: 'p17',
     category: 'Для лица',
     images: [
       '/images/products/pionne_001.webp',
