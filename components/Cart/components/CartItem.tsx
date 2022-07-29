@@ -40,7 +40,7 @@ const CartItem = ({ product, amount }: Props) => {
             <Icons.Plus />
           </div>
         </div>
-        <div className={`${styles.product_price}`}>{product.price} Р</div>
+        <div className={`${styles.product_price}`}>{product.price * amount} Р</div>
       </div>
     </div>
   ) : null;
