@@ -1,7 +1,7 @@
 import { Icons } from 'components/Svg';
 import Image from 'next/image';
 import React from 'react';
-import { addToCart, deleteOneFromCart } from 'utils';
+import { addToCart, deleteOneFromCart, deleteAllFromCart } from 'utils';
 import { useCart } from 'store/useCart';
 import styles from '../Cart.module.css';
 
@@ -22,7 +22,7 @@ const CartItem = ({ product, amount }: Props) => {
           <div className={`${styles.product_title}`}>{product.title}</div>
           <div className={`${styles.product_v}`}>Объем упаковки: {product.info.v}</div>
         </div>
-        <div className={`mx-auto`}>
+        <div className={`mx-auto`} onClick={() => deleteAllFromCart({ id: product.id, cart: cart, cb: setCart })}>
           <Icons.Close />
         </div>
       </div>

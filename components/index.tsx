@@ -7,4 +7,7 @@ export { default as BreadCrumbs } from './BreadCrumbs/BreadCrums';
 export { default as About } from './About/About';
 export { default as Contacts } from './Contatcs/Contacts';
 export { default as Cart } from './Cart/Cart';
+export * as Forms from './Forms';
+export * as UI from './UI';
+export * as PromoBlocks from './PromoBlocks';
 export * as Svg from './Svg';

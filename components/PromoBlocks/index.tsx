@@ -1,0 +1,1 @@
+export {default as Society} from './Society'
