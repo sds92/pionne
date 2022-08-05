@@ -3,7 +3,7 @@ import { MAIN_PAGE } from 'configs/pageData';
 import { useStore } from 'lib/store';
 import useShow from 'utils/useShow';
 
-import styles from '../Products.module.css';
+import styles from '../../Products.module.css';
 
 type SliderMenuProps = {
   data: IProduct[];

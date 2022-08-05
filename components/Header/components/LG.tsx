@@ -8,13 +8,13 @@ type LGProps = {};
 const LG = ({}: LGProps) => {
   const router = useRouter();
   return (
-    <div className={`h-[130px] max-w-[1280px] w-full mx-auto flex items-center justify-between`}>
+    <div className={`h-[130px] max-w-[1280px] w-full mx-auto flex items-center justify-between `}>
       <div>
         <Svg.Icons.Menu className={`cursor-pointer`} />
       </div>
       <div className={`flex gap-8 items-center`}>
         {MENU.LG.items.map(([title, _href], i) => {
-          if (title === 'Logo') return <Svg.Logo h={'77'} w={`auto`} />;
+          if (title === 'Logo') return <Svg.Logo h={'77'} w={`auto`} onClick={() => router.replace('/')} />;
           return (
             <div
               key={`menuitem${i}`}

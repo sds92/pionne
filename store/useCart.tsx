@@ -18,7 +18,7 @@ export const useCart = create<IProductsStore>((set) => ({
   setCart: (_cart) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('cart', JSON.stringify(_cart));
-      set((s) => ({ ...s, cart: _cart.sort((a, b) => ('' + a.id).localeCompare(b.id)) }));
+      set((s) => ({ ...s, cart: _cart.sort((a, b) => (a.id).localeCompare(b.id)) }));
     }
   },
 }));

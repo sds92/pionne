@@ -92,11 +92,12 @@ const Carousel = ({
   };
   const snap = async (newTranslationValue: number) => {
     const durationMs = 150;
+    // if (!innerWrapperRef.current === null) return
     if (innerWrapperRef.current) {
       innerWrapperRef.current.style.transition = `all ${durationMs}ms ease-in`;
       setTranslateValue(newTranslationValue);
       await new Promise((r) => setTimeout(r, durationMs));
-      innerWrapperRef.current.style.transition = '';
+      // innerWrapperRef.current.style.transition = '';
     }
   };
 
