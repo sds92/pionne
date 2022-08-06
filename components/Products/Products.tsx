@@ -18,8 +18,13 @@ const Products = ({ data, comments }: ProductProps) => {
 
   return (
     <div className={`flex flex-col`}>
-      {w && w < 900 ? <ProductMenu.SM data={data} /> : <ProductMenu.LG data={data}/>}
-      <ProductList data={data} comments={comments} />
+      {w && (
+        <>
+          <ProductMenu data={data} w={w} />
+          {w > 900 && <ProductList.LG />}
+          {w <= 900 && <ProductList.SM data={data} comments={comments} />}
+        </>
+      )}
     </div>
   );
 };

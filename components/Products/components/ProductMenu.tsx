@@ -3,14 +3,15 @@ import { MAIN_PAGE } from 'configs/pageData';
 import { useStore } from 'lib/store';
 import useShow from 'utils/useShow';
 
-import styles from '../../Products.module.css';
+import styles from '../Products.module.css';
 
 type SliderMenuProps = {
   data: IProduct[];
+  w: number;
 };
 
-const SliderMenu = ({ data }: SliderMenuProps) => {
-  const { setCurCategory } = useStore();
+const ProductMenu = ({ data, w }: SliderMenuProps) => {
+  const { setCurCategory, curCategory } = useStore();
   const divRef = React.useRef<HTMLDivElement>(null);
   const [show, setShow] = React.useState<boolean>(false);
   const isShow = useShow(divRef, 72);
@@ -28,7 +29,7 @@ const SliderMenu = ({ data }: SliderMenuProps) => {
     }
     if (document !== undefined) {
       const id = data.find((product) => product.category.toLowerCase() === menuItem.toLowerCase())?.id;
-      if (!id) return
+      if (!id) return;
       const y = document?.getElementById(id)?.offsetTop;
       y &&
         window.scrollTo({
@@ -48,13 +49,13 @@ const SliderMenu = ({ data }: SliderMenuProps) => {
 
   return (
     <>
-      <div ref={divRef} className={`w-full relative`}>
-        <div className={`flex gap-4`}>
+      <div ref={divRef} className={`w-full relative ${w > 900 && `border-b`}`}>
+        <div className={`flex ${w > 900 && `justify-center`}`}>
           {MAIN_PAGE.sliderMenu.map((menuItem, i) => {
             return (
               <div
                 key={`menuItem${i}`}
-                className={`${styles.menuslider_item} cursor-pointer uppercase whitespace-nowrap`}
+                className={`${styles.menuslider_item} ${curCategory === menuItem && `border-b-[2px] border-black`} cursor-pointer uppercase whitespace-nowrap mx-4`}
                 onClick={() => {
                   setCurCategory(menuItem);
                   handleScroll(menuItem);
@@ -73,7 +74,7 @@ const SliderMenu = ({ data }: SliderMenuProps) => {
               return (
                 <div
                   key={`menuitem${i}`}
-                  className={`${styles.menuslider_item} cursor-pointer uppercase whitespace-nowrap`}
+                  className={`${styles.menuslider_item} ${styles.menuslider_item} ${curCategory === menuItem && `border-b-[2px] border-black`} cursor-pointer uppercase whitespace-nowrap`}
                   onClick={() => {
                     setCurCategory(menuItem);
                     handleScroll(menuItem);
@@ -90,4 +91,4 @@ const SliderMenu = ({ data }: SliderMenuProps) => {
   );
 };
 
-export default SliderMenu;
+export default ProductMenu;

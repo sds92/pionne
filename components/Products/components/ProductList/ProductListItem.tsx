@@ -3,11 +3,11 @@ import React from 'react';
 import Link from 'next/link';
 import useWindowSize from 'utils/useWindowSize';
 import MobileSlider from 'components/Slider/MobileSlider';
-import { Separator } from './';
+import { Separator } from '../';
 import { useInView } from 'react-intersection-observer';
 import { useStore } from 'lib/store';
 import { useCart } from 'store/useCart';
-import styles from '../Products.module.css';
+import styles from '../../Products.module.css';
 import { addToCart } from 'utils';
 
 type ProductListItemProps = {
