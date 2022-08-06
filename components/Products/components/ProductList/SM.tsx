@@ -8,15 +8,15 @@ type ProductListProps = {
   comments: IComments[];
 };
 
-const ProductList = ({ data }: ProductListProps) => {
+const SM = ({ data }: ProductListProps) => {
   return (
     <div className={`flex flex-col overflow-hidden`}>
       {data?.map((product, i) => {
-        return <ProductListItem key={`pr${i}`} product={product} i={i} comments={comments}/>;
+        return <ProductListItem.SM key={`pr${i}`} product={product} i={i} comments={comments}/>;
       })}
       <></>
     </div>
   );
 };
 
-export default ProductList;
+export default SM;

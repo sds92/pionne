@@ -8,7 +8,7 @@ type Props = {
   lg?: boolean
 };
 
-const Button = ({ text, bgColor, textColor, onClick, lg }: Props) => {
+const WriteUs = ({ text, bgColor, textColor, onClick, lg }: Props) => {
   return (
     <div
       style={{ background: bgColor || '#000' }}
@@ -22,4 +22,4 @@ const Button = ({ text, bgColor, textColor, onClick, lg }: Props) => {
   );
 };
 
-export default Button;
+export default WriteUs;

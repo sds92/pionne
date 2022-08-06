@@ -7,11 +7,35 @@
   /* or 29px */
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
+
+.product_title_lg {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 120%;
+}
+
+.product_category_lg {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
 .product_description {
   font-weight: 400;
   font-size: 12px;
   line-height: 130%;
 }
+
+.product_description_lg {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 140%;
+}
+
 .product_price {
   font-family: 'Playfair Display';
   font-style: normal;
@@ -20,6 +44,16 @@
   line-height: 120%;
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
+
+.product_price_lg {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 120%;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
 .product_to_cart {
   font-weight: 500;
   font-size: 10px;
@@ -29,9 +63,11 @@
   text-transform: uppercase;
   color: #ffffff;
 }
+
 .separator_bg {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 }
+
 .separator_title {
   font-weight: 500;
   font-size: 12px;
@@ -41,6 +77,17 @@
   text-transform: uppercase;
   color: #fafafa;
 }
+
+.separator_title_lg {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fafafa;
+}
+
 .separator_text {
   font-family: 'Playfair Display';
   font-style: normal;
@@ -50,12 +97,24 @@
   text-align: center;
   color: #ffffff;
 }
+
+.separator_text_lg {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 120%;
+  text-align: center;
+  color: #fafafa;
+}
+
 .menuslider_item {
   font-weight: 400;
   font-size: 10px;
   line-height: 20px;
   letter-spacing: 2px;
 }
+
 .comments_title {
   font-family: 'Playfair Display';
   font-style: normal;
@@ -63,11 +122,13 @@
   font-size: 20px;
   line-height: 120%;
 }
+
 .comments_autor {
   font-weight: 400;
   font-size: 20px;
   line-height: 120%;
 }
+
 .comments_text {
   font-weight: 400;
   font-size: 12px;

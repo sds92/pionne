@@ -3,11 +3,11 @@ import React from 'react';
 import Link from 'next/link';
 import useWindowSize from 'utils/useWindowSize';
 import MobileSlider from 'components/Slider/MobileSlider';
-import { Separator } from '../';
+import { Separator } from '../..';
 import { useInView } from 'react-intersection-observer';
 import { useStore } from 'lib/store';
 import { useCart } from 'store/useCart';
-import styles from '../../Products.module.css';
+import styles from '../../../Products.module.css';
 import { addToCart } from 'utils';
 
 type ProductListItemProps = {
@@ -16,7 +16,7 @@ type ProductListItemProps = {
   comments: IComments[];
 };
 
-const ProductListItem = ({ product, i, comments }: ProductListItemProps) => {
+const SM = ({ product, i, comments }: ProductListItemProps) => {
   const { curCategory, setCurCategory } = useStore();
   const { cart, setCart } = useCart();
   const { width } = useWindowSize();
@@ -60,4 +60,4 @@ const ProductListItem = ({ product, i, comments }: ProductListItemProps) => {
   );
 };
 
-export default ProductListItem;
+export default SM;

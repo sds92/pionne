@@ -21,6 +21,7 @@ const Separator = ({ id, data }: SeparatorProps) => {
             alt={``}
             src={`/images/productlist_001.webp`}
             layout={`fill`}
+            objectFit={`cover`}
           />
           <div
             className={`${styles.separator_bg} w-full h-full absolute -z-10 rounded-[50px] overflow-hidden`}
@@ -54,6 +55,28 @@ const Separator = ({ id, data }: SeparatorProps) => {
                 })}
               </MobileSlider>
             )}
+          </div>
+        </div>
+      );
+    }
+    case 3: {
+      return (
+        <div className={`h-[450px] relative flex flex-col justify-center items-center`}>
+          <Image
+            className={`-z-10`}
+            alt={``}
+            src={`/images/productlist_001.webp`}
+            layout={`fill`}
+            objectFit={`cover`}
+          />
+          <div
+            className={`${styles.separator_bg} w-full h-full absolute -z-10 overflow-hidden`}
+          ></div>
+          <div className={`flex flex-col z-10 px-10 py-20 gap-7`}>
+            <div className={`${styles.separator_title_lg}`}>философия pionne</div>
+            <div className={`${styles.separator_text_lg} max-w-[983px]`}>
+              Подбираем лучший уход для вашей кожи в рамках онлайн консультаций.
+            </div>
           </div>
         </div>
       );
