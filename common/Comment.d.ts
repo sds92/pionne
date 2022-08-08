@@ -3,5 +3,5 @@ interface IComments {
   autor: string;
   text: string;
   date: string;
-  product: number;
+  product: string;
 }

@@ -5,10 +5,21 @@ import { useCart } from 'store/useCart';
 import React from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const {getCart} = useCart()
+  const { getCart, cart } = useCart();
+
+  
+
   React.useEffect(() => {
-    getCart()
-  }, [getCart])
+    if (typeof window !== 'undefined') {
+      window.addEventListener('storage', getCart);
+    }
+
+    getCart();
+
+    return () => {
+      window.removeEventListener('storage', getCart);
+    };
+  }, [getCart]);
   return (
     <Layout>
       <Component {...pageProps} />

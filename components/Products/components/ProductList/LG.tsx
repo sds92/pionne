@@ -5,6 +5,7 @@ import { comments } from 'data/comments';
 import { PRODUCTS } from 'configs/products';
 import { InLineCategory, Item } from './InLineCategory';
 import Separator from '../Separator';
+import Comments from './Comments';
 
 type Props = {
   data: IProduct[];
@@ -19,15 +20,18 @@ const LG = ({ data }: Props) => {
     pre[cur.category.toLocaleLowerCase()].push(cur);
     return pre;
   }, {} as { [key: string]: IProduct[] });
-  console.log('🚀 ~ file: LG.tsx ~ line 22 ~ filteredByCategory ~ filteredByCategory', filteredByCategory);
+
+ let count = 0;
+
   return (
     <div className={`flex flex-col overflow-hidden`}>
       {data?.map((product, i) => {
         if (product.category.toLocaleLowerCase() === PRODUCTS.inLineCategory.toLocaleLowerCase()) return null;
+        count += 1;
         return (
           <>
             <ProductListItem.LG key={`pr${i}`} product={product} i={i} comments={comments} />
-            {i === 0 && (
+            {count === 1 && (
               <>
                 <InLineCategory title={PRODUCTS.inLineCategory}>
                   {filteredByCategory[PRODUCTS.inLineCategory].map((product, ii) => {
@@ -37,7 +41,8 @@ const LG = ({ data }: Props) => {
                 <Separator id={3} />
               </>
             )}
-            {i === 3 && <Separator id={2} data={comments} />}
+            {count === 3 && <Comments.LG comments={comments} products={data} />}
+            {count === 5 && <Separator id={4} />}
           </>
         );
       })}

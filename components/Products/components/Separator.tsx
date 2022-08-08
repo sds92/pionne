@@ -81,6 +81,27 @@ const Separator = ({ id, data }: SeparatorProps) => {
         </div>
       );
     }
+    case 4: {
+      return (
+        <div className={`h-[450px] relative flex flex-col justify-center items-center`}>
+          <Image
+            className={`-z-10`}
+            alt={``}
+            src={`/images/productlist_002.webp`}
+            layout={`fill`}
+            objectFit={`cover`}
+          />
+          <div
+            className={`${styles.separator_bg} w-full h-full absolute -z-10 overflow-hidden`}
+          ></div>
+          <div className={`flex flex-col z-10 px-10 py-20 gap-7`}>
+            <div className={`${styles.separator_text_lg} max-w-[983px]`}>
+              Подбираем лучший уход для вашей кожи в рамках онлайн консультаций.
+            </div>
+          </div>
+        </div>
+      );
+    }
     default:
       return <></>;
   }
