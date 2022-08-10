@@ -4,7 +4,7 @@ interface IProduct {
   images: string[];
   title: string;
   meta: {
-    description: string;
+    description: string[];
     keywords: string;
   };
   price: number;

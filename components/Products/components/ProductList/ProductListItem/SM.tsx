@@ -29,6 +29,9 @@ const SM = ({ product, i, comments }: ProductListItemProps) => {
     addToCart({ id: product.id, cart: cart, cb: setCart });
   };
 
+  const [curPhoto, setCurPhoto] = React.useState<number>(0)
+  console.log("🚀 ~ file: SM.tsx ~ line 33 ~ SM ~ curPhoto", curPhoto)
+
   React.useEffect(() => {
     if (inView) {
       () => setCurCategory(product.category);
@@ -37,8 +40,8 @@ const SM = ({ product, i, comments }: ProductListItemProps) => {
 
   return (
     <>
-      <div id={product.id.toString()} ref={ref} key={`product${i}`} className={`flex flex-col gap-4 py-4`}>
-        {width < 640 && <MobileSlider id={product.id} images={product.images} />}
+      <div id={product.id.toString()} ref={ref} key={`product${i}`} className={`flex flex-col gap-4 py-4 h-[calc(100vh-80px)] `}>
+        {width < 640 && <MobileSlider id={product.id} images={product.images} setCurPhoto={setCurPhoto}/>}
 
         <Link href={`products/${product.id}`} passHref>
           <div className={`${styles.product_title} px-4`}>{product.title}</div>
@@ -53,9 +56,9 @@ const SM = ({ product, i, comments }: ProductListItemProps) => {
             В корзину
           </div>
         </div>
+      </div>
         {i === 1 && <Separator id={1} />}
         {i === 3 && <Separator id={2} data={comments} />}
-      </div>
     </>
   );
 };
