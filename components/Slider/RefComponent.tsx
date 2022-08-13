@@ -2,8 +2,8 @@ import React from 'react';
 import useIntersectionObserver from 'utils/useIntersectionObserver';
 type Props = {
   children: React.ReactNode;
-  setCur?: React.Dispatch<React.SetStateAction<number>>
-  i: number
+  setCur?: React.Dispatch<React.SetStateAction<number>>;
+  i: number;
 };
 
 const RefComponent = ({ children, setCur, i }: Props) => {
@@ -16,10 +16,14 @@ const RefComponent = ({ children, setCur, i }: Props) => {
   });
 
   React.useEffect(() => {
-    entry?.isIntersecting && setCur && setCur(i)
-  }, [entry, i, setCur])
+    entry?.isIntersecting && setCur && setCur(i);
+  }, [entry, i, setCur]);
 
-  return <div ref={divRef} className={`h-full w-full`}>{children}</div>;
+  return (
+      <div ref={divRef} className={`h-full w-full`}>
+        {children}
+      </div>
+  );
 };
 
 export default RefComponent;
