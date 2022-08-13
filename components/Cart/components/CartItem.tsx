@@ -2,7 +2,7 @@ import { Icons } from 'components/Svg';
 import Image from 'next/image';
 import React from 'react';
 import { addToCart, deleteOneFromCart, deleteAllFromCart } from 'utils';
-import { useCart } from 'store/useStore';
+import { useStore } from 'store/useStore';
 import styles from '../Cart.module.css';
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 };
 
 const CartItem = ({ product, amount }: Props) => {
-  const { cart, setCart } = useCart();
+  const { cart, setCart } = useStore();
   return product ? (
     <div className={`flex flex-col w-full p-[8px]`}>
       <div className={`flex w-full justify-between items-center pb-[20px]`}>

@@ -2,7 +2,7 @@ import React from 'react';
 import { BreadCrumbs, Forms, PromoBlocks, UI } from 'components';
 import { CartItem, Delivery, PromoCode } from './components';
 import { CART_PAGE } from 'configs/pageData';
-import { useCart } from '../../store/useStore';
+import { useStore } from '../../store/useStore';
 
 import styles from './Cart.module.css';
 
@@ -17,7 +17,7 @@ type CartState = {
 };
 
 const Cart = ({ products }: CartProps) => {
-  const { getCart, setCart, cart } = useCart();
+  const { getCart, setCart, cart } = useStore();
 
   const [orderState, setOrderState] = React.useState<string>('preorder');
   const [isActive, setIsActive] = React.useState<CartState>({
