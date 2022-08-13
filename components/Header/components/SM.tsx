@@ -6,7 +6,7 @@ import { MENU } from 'configs/pageData';
 import { CONTACTS } from 'configs/app';
 import styles from '../Header.module.css';
 import Link from 'next/link';
-import { useCart } from 'store/useCart';
+import { useStore } from 'store/useStore';
 
 type SMProps = {
   handleMenu: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
@@ -17,16 +17,16 @@ const SM = ({ handleMenu }: SMProps) => {
   const { lockScroll, unlockScroll } = useScrollLock();
   const [isOpen, setIsOpen] = handleMenu;
   const isMain = router.route === '/' ? true : false;
-  const { cart } = useCart();
+  const { cart } = useStore();
 
   React.useEffect(() => {
     isOpen ? lockScroll() : unlockScroll();
-  }, [isOpen]);
+  }, [isOpen, lockScroll, unlockScroll]);
 
   return (
     <>
       {isOpen ? (
-        <div className={`z-[60] flex flex-wrap min-h-screen px-4 pb-6 gap-14 relative bg-[#FFF4F4]`}>
+        <div className={`z-[60] flex flex-wrap min-h-screen px-4 pb-6 relative bg-[#FFF4F4] animate-fadein`}>
           <div className={`w-full h-[72px] flex items-center`}>
             <Svg.Icons.Close className={`cursor-pointer`} onClick={() => setIsOpen(false)} />
           </div>
@@ -36,7 +36,6 @@ const SM = ({ handleMenu }: SMProps) => {
                 <div className={`${styles.submenu_title} pb-2`}>{title}</div>
                 <div className={`flex flex-col`}>
                   {items.map(([_title, _href, option], ii) => {
-                    console.log('🚀 ~ file: SM.tsx ~ line 37 ~ {items.map ~ _href', _href);
                     return (
                       <div key={`menuitem${ii}`} onClick={() => router.replace(`/${_href}`)}>
                         <div
@@ -96,7 +95,13 @@ const SM = ({ handleMenu }: SMProps) => {
             onClick={() => router.replace(`/cart`)}
           >
             <Svg.Icons.Cart className={`cursor-pointer`} />
-            {cart.length > 0 && <div className={`cursor-pointer absolute flex items-center justify-center translate-y-1 text-white rounded-full bg-black w-4 h-4`}>{cart.length}</div>}
+            {cart.length > 0 && (
+              <div
+                className={`cursor-pointer absolute flex items-center justify-center translate-y-1 text-white rounded-full bg-black w-4 h-4`}
+              >
+                {cart.length}
+              </div>
+            )}
           </div>
         </div>
       )}

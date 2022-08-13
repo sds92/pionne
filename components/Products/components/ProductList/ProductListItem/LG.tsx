@@ -5,24 +5,21 @@ import useWindowSize from 'utils/useWindowSize';
 import MobileSlider from 'components/Slider/MobileSlider';
 import { Separator } from '../..';
 import { useInView } from 'react-intersection-observer';
-import { useStore } from 'lib/store';
-import { useCart } from 'store/useCart';
+import { useStore } from 'store/useStore';
 import styles from '../../../Products.module.css';
 import { addToCart } from 'utils';
 import Image from 'next/image';
 import { UI } from 'components';
 
-
-type ProductListItemProps = {
+type Props = {
   i: number;
   product: IProduct;
   comments: IComments[];
 };
 
-const LG = ({ product, i, comments }: ProductListItemProps) => {
+const LG = ({ product, i, comments }: Props) => {
   const [curImage, setCurImage] = React.useState<number>(0);
-  const { curCategory, setCurCategory } = useStore();
-  const { cart, setCart } = useCart();
+  const { curCategory, setCurCategory, cart, setCart } = useStore();
   const { width } = useWindowSize();
   const { ref, inView, entry } = useInView({
     /* Optional options */

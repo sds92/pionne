@@ -5,7 +5,7 @@ import MobileSlider from 'components/Slider/MobileSlider';
 import useWindowSize from 'utils/useWindowSize';
 import styles from './Product.module.css';
 import Image from 'next/image';
-import { useCart } from 'store/useCart';
+import { useStore } from 'store/useStore';
 import { addToCart } from 'utils';
 
 type ProductProps = {
@@ -13,28 +13,48 @@ type ProductProps = {
 };
 
 const Product = ({ data }: ProductProps) => {
-  const { cart, setCart } = useCart();
+  const { cart, setCart } = useStore();
   const { width } = useWindowSize();
   const breadCrumbs = [
     ['Главная', '/'],
     [`${data.title}`, `${data.id}`],
   ];
+  const [curSrc, setCurSrc] = React.useState<string>(data.images[0]);
 
   const handleAddToCart = () => {
     addToCart({ id: data.id, cart: cart, cb: setCart });
   };
   return (
-    <div className={`flex flex-col gap-4 py-8 px-4`}>
+    <div className={`flex flex-col py-8 px-4`}>
       <BreadCrumbs data={breadCrumbs} />
-      <div className={`relative`}>
+      <div className={`relative flex flex-col w-full`}>
+        <div
+          style={{
+            // width: `${width}px`,
+            height: `${(width * 326) / 288}px`,
+          }}
+          className={`relative mb-[20px] w-full`}
+        >
+          <Image
+            quality={100}
+            alt={``}
+            src={curSrc}
+            layout={`fill`}
+            objectFit={`cover`}
+            // objectPosition={`center`}
+          />
+        </div>
         {width < 640 && (
           <MobileSlider>
             {data.images.map((image, i) => {
               return (
                 <div
                   key={`image${i}`}
-                  style={{ width: `${width - 60}px`, height: `${(width * 326) / 288}px` }}
-                  className={`relative mx-4`}
+                  style={{ width: `100px`, height: `100px` }}
+                  className={`relative mx-[5px] rounded-[5px] overflow-hidden`}
+                  onClick={() => {
+                    setCurSrc(image);
+                  }}
                 >
                   <Image
                     alt={``}
@@ -49,7 +69,7 @@ const Product = ({ data }: ProductProps) => {
           </MobileSlider>
         )}
       </div>
-      <div className={`${styles.product_title}`}>{data.title}</div>
+      <div className={`${styles.product_title} mt-[56px]`}>{data.title}</div>
       <div
         className={`${styles.product_description}`}
         // dangerouslySetInnerHTML={{ __html: data.description }}

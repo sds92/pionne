@@ -2,7 +2,7 @@ import React from 'react';
 import { BreadCrumbs, Forms, PromoBlocks, UI } from 'components';
 import { CartItem, Delivery, PromoCode } from './components';
 import { CART_PAGE } from 'configs/pageData';
-import { useCart } from '../../store/useCart';
+import { useCart } from '../../store/useStore';
 
 import styles from './Cart.module.css';
 

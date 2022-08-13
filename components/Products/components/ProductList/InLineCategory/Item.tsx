@@ -1,6 +1,6 @@
 import { UI } from 'components';
 import React from 'react';
-import { useCart } from 'store/useCart';
+import { useStore } from 'store/useStore';
 import { addToCart } from 'utils';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Item = ({ product }: Props) => {
-  const { cart, setCart } = useCart();
+  const { cart, setCart } = useStore();
   const handleAddToCart = () => {
     addToCart({ id: product.id, cart: cart, cb: setCart });
   };

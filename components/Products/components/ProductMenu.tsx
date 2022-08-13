@@ -1,6 +1,6 @@
 import React from 'react';
 import { MAIN_PAGE } from 'configs/pageData';
-import { useStore } from 'lib/store';
+import { useStore } from 'store/useStore';
 import useShow from 'utils/useShow';
 
 import styles from '../Products.module.css';
@@ -22,7 +22,7 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
       const y = document?.getElementById(id)?.offsetTop;
       y &&
         window.scrollTo({
-          top: y - 100,
+          top: y - 94,
           behavior: 'smooth',
         });
       return;
@@ -55,7 +55,7 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
             return (
               <div
                 key={`menuItem${i}`}
-                className={`${styles.menuslider_item} ${curCategory === menuItem && `border-b-[2px] border-black`} cursor-pointer uppercase whitespace-nowrap mx-4`}
+                className={`${styles.menuslider_item} ${curCategory === menuItem && `border-b-[2px] border-black`} cursor-pointer uppercase whitespace-nowrap mx-[10px] text-center`}
                 onClick={() => {
                   setCurCategory(menuItem);
                   handleScroll(menuItem);
@@ -69,12 +69,12 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
       </div>
       {show && (
         <div className={`w-full z-50 fixed top-[72px] bg-white`}>
-          <div className={`flex gap-4`}>
+          <div className={`flex `}>
             {MAIN_PAGE.sliderMenu.map((menuItem, i) => {
               return (
                 <div
                   key={`menuitem${i}`}
-                  className={`${styles.menuslider_item} ${styles.menuslider_item} ${curCategory === menuItem && `border-b-[2px] border-black`} cursor-pointer uppercase whitespace-nowrap`}
+                  className={`${styles.menuslider_item} ${styles.menuslider_item} ${curCategory === menuItem && `border-b-[2px] border-black`} cursor-pointer uppercase whitespace-nowrap mx-[10px] text-center`}
                   onClick={() => {
                     setCurCategory(menuItem);
                     handleScroll(menuItem);

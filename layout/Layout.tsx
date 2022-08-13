@@ -17,7 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
   return w ? (
     <>
       <Header w={w} handleMenu={[menuOpen, setMenuOpen]} />
-      <main className={`${w < 600 ? 'pt-[72px]' : ''} h-full`}>{children}</main>
+      <main className={`${w < 600 ? 'pt-[72px]' : ''} h-full w-screen relative`}>{children}</main>
       <Footer w={w} />
     </>
   ) : (

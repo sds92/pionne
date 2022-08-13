@@ -2,7 +2,7 @@ import { Icons } from 'components/Svg';
 import Image from 'next/image';
 import React from 'react';
 import { addToCart, deleteOneFromCart, deleteAllFromCart } from 'utils';
-import { useCart } from 'store/useCart';
+import { useCart } from 'store/useStore';
 import styles from '../Cart.module.css';
 
 type Props = {

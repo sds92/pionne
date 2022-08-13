@@ -1,12 +1,16 @@
 import create from 'zustand';
 
-interface IProductsStore {
+interface IStore {
+  curCategory: string;
+  setCurCategory: (val: string) => void;
   cart: ICartItem[];
   setCart: (cart: ICartItem[]) => void;
   getCart: () => void;
 }
 
-export const useCart = create<IProductsStore>((set) => ({
+export const useStore = create<IStore>((set) => ({
+  curCategory: 'Все',
+  setCurCategory: (val: string) => set((s) => ({ s, curCategory: val })),
   cart: [],
   getCart: () => {
     if (typeof window !== 'undefined') {
@@ -18,7 +22,7 @@ export const useCart = create<IProductsStore>((set) => ({
   setCart: (_cart) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('cart', JSON.stringify(_cart));
-      set((s) => ({ ...s, cart: _cart.sort((a, b) => (a.id).localeCompare(b.id)) }));
+      set((s) => ({ ...s, cart: _cart.sort((a, b) => a.id.localeCompare(b.id)) }));
     }
   },
 }));
