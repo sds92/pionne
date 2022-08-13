@@ -47,7 +47,29 @@ const SM = ({ product, i, comments }: Props) => {
         key={`product${i}`}
         className={`flex flex-col gap-4 py-4 h-[calc(100vh-80px)] `}
       >
-        {width < 640 && <MobileSlider id={product.id} images={product.images} setCurPhoto={setCurPhoto} curPhoto={curPhoto}/>}
+        {width < 640 && (
+          <div className={`h-full relative flex flex-col items-center justify-end`}>
+            <MobileSlider
+              id={product.id}
+              images={product.images}
+              setCurPhoto={setCurPhoto}
+              curPhoto={curPhoto}
+            />
+            <div className={`absolute flex z-50 bottom-[16px]`}>
+              {product.images?.map((item, i) => {
+                return (
+                  
+                  <div
+                    key={`dot${i}`}
+                    className={`rounded-full w-[6px] h-[6px] flex-none mx-[5px] ${
+                      curPhoto === i ? 'bg-white border border-black' : 'bg-black'
+                    }`}
+                  ></div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         <Link href={`products/${product.id}`} passHref>
           <div className={`${styles.product_title} px-4`}>{product.title}</div>

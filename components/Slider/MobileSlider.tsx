@@ -11,14 +11,13 @@ type Props = {
   id?: string;
   children?: React.ReactNode;
   setCurPhoto?: React.Dispatch<React.SetStateAction<number>>;
-  curPhoto?: number
+  curPhoto?: number;
 };
 
 const MobileSlider = ({ images, id, children, setCurPhoto, curPhoto }: Props) => {
-
   const { width } = useWindowSize();
   return (
-    <div className={`h-full relative flex flex-col items-center justify-end`}>
+    <>
       {/* @ts-ignore */}
       <Carousel mode='HORISONTAL' allowSnapping={true}>
         {children
@@ -40,12 +39,7 @@ const MobileSlider = ({ images, id, children, setCurPhoto, curPhoto }: Props) =>
               );
             }) || null}
       </Carousel>
-      <div className={`absolute flex z-50 bottom-[16px]`}>
-        {images?.map((item, i) =>{
-          return <div key={`dot${i}`} className={`rounded-full w-[6px] h-[6px] flex-none mx-[5px] ${curPhoto === i ? 'bg-white border border-black' : 'bg-black'}`}></div>
-        })}
-      </div>
-    </div>
+    </>
   );
 };
 
