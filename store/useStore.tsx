@@ -8,6 +8,8 @@ interface IStore {
   cart: ICartItem[];
   setCart: (cart: ICartItem[]) => void;
   getCart: () => void;
+  showAddToCartPopup: boolean;
+  setShowAddToCartPopup: (val: boolean) => void;
 }
 
 export const useStore = create<IStore>((set) => ({
@@ -29,4 +31,6 @@ export const useStore = create<IStore>((set) => ({
       set((s) => ({ ...s, cart: _cart.sort((a, b) => a.id.localeCompare(b.id)) }));
     }
   },
+  showAddToCartPopup: false,
+  setShowAddToCartPopup: (val) => set((s) => ({ ...s, showAddToCartPopup: val })),
 }));

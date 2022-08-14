@@ -6,18 +6,28 @@ import styles from './Footer.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import {useStore} from 'store/useStore'
 
 type FooterProps = {
   w: number;
 };
 
 const Footer = ({ w }: FooterProps) => {
+  const {curCategory, setCurCategory} = useStore()
   const router = useRouter();
   const isContacts = router.route === '/contacts';
   const isProduct = /\/products\//.test(router.route);
   return (
-    <footer className={`flex flex-col overflow-hidden bg-[#FAFAFA] relative`}>
-      <Image className={`${styles.bg}`} alt={``} src={`/images/footer_bg_1.webp`} layout={`fill`} objectFit={`cover`}/>
+    <footer className={`flex flex-col overflow-hidden relative`}>
+      <div className={`absolute w-full h-full -z-50 bg-[#FAFAFA]`}>
+        <Image
+          className={`${styles.bg}`}
+          alt={``}
+          src={`/images/footer_bg_1.webp`}
+          layout={`fill`}
+          objectFit={`cover`}
+        />
+      </div>
       {isContacts || isProduct ? (
         <div className={`${styles.is_contacts} text-center px-8`}>
           Подбираем лучший уход
@@ -58,7 +68,7 @@ const Footer = ({ w }: FooterProps) => {
                   <Link key={`menuitem${ii}`} href={`/products`} passHref>
                     <div
                       className={`${styles.menu_item} my-1.5 cursor-pointer`}
-                      onClick={() => console.log('`ss')}
+                      onClick={() => setCurCategory(option)}
                     >
                       {_title}
                     </div>

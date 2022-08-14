@@ -12,10 +12,10 @@ export const MENU = {
     {
       title: 'Продукты',
       items: [
-        ['Все товары', 'products', 'all'],
-        ['Для лица', 'products', 'face'],
-        ['Для тела', 'products', 'body'],
-        ['Для волос', 'products', 'hair'],
+        ['Все товары', 'products', 'Все'],
+        ['Для лица', 'products', 'Для лица'],
+        ['Для тела', 'products', 'Для тела'],
+        ['Для волос', 'products', 'Для волос'],
       ],
     },
     {

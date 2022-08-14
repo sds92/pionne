@@ -25,6 +25,22 @@
   line-height: 140%;
 }
 
+.total_price_title {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.total_price_value {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
 .promocode_bottom {
   font-weight: 400;
   font-size: 18px;

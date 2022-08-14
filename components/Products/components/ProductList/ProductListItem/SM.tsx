@@ -9,6 +9,7 @@ import { useStore } from 'store/useStore';
 import styles from '../../../Products.module.css';
 import { addToCart } from 'utils';
 import Comments from '../Comments';
+import { UI } from 'components';
 
 type Props = {
   i: number;
@@ -18,7 +19,7 @@ type Props = {
 
 const SM = ({ product, i, comments }: Props) => {
   const [curPhoto, setCurPhoto] = React.useState<number>(0);
-  const { curCategory, setCurCategory, cart, setCart } = useStore();
+  const { curCategory, setCurCategory, cart, setCart, setShowAddToCartPopup } = useStore();
   const { width } = useWindowSize();
   const { ref, inView, entry } = useInView({
     /* Optional options */
@@ -45,7 +46,7 @@ const SM = ({ product, i, comments }: Props) => {
         id={product.id.toString()}
         ref={ref}
         key={`product${i}`}
-        className={`flex flex-col gap-4 py-4 h-[calc(100vh-80px)] `}
+        className={`flex flex-col py-4 h-[calc(100vh-80px)] `}
       >
         {width < 640 && (
           <div className={`h-full max-h-[60%] relative flex flex-col items-center justify-end`}>
@@ -55,10 +56,9 @@ const SM = ({ product, i, comments }: Props) => {
               setCurPhoto={setCurPhoto}
               curPhoto={curPhoto}
             />
-            <div className={`absolute flex z-50 bottom-[16px]`}>
+            <div className={`absolute flex z-10 bottom-[16px]`}>
               {product.images?.map((item, i) => {
                 return (
-                  
                   <div
                     key={`dot${i}`}
                     className={`rounded-full w-[6px] h-[6px] flex-none mx-[5px] ${
@@ -72,17 +72,17 @@ const SM = ({ product, i, comments }: Props) => {
         )}
 
         <Link href={`products/${product.id}`} passHref>
-          <div className={`${styles.product_title} px-4`}>{product.title}</div>
+          <div className={`${styles.product_title} px-4 mt-[24px]`}>{product.title}</div>
         </Link>
-        <div className={`${styles.product_description} px-4`}>{description}</div>
-        <div className={`flex w-full justify-between items-center border-b pb-8 px-4`}>
+        <div className={`${styles.product_description} px-4 mt-[11px]`}>{description}</div>
+        <div className={`mt-[18px] flex w-full justify-between items-center border-b pb-8 px-4`}>
           <div className={`${styles.product_price}`}>{product.price}&nbsp;р</div>
-          <div
-            className={`${styles.product_to_cart} rounded-full px-8 py-4 bg-black cursor-pointer`}
-            onClick={handleAddToCart}
-          >
-            В корзину
-          </div>
+          <UI.Buttons.AddToCart
+            onClick={() => {
+              handleAddToCart();
+              setShowAddToCartPopup(true);
+            }}
+          />
         </div>
       </div>
       {i === 1 && <Separator id={1} />}

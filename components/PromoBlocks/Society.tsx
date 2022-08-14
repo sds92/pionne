@@ -5,7 +5,7 @@ type Props = {};
 
 const Society = (props: Props) => {
   return (
-    <div className='flex flex-col items-center justify-center relative aspect-[288/330]'>
+    <div className='flex flex-col items-center justify-center relative aspect-[288/330] mt-[60px]'>
       <div className='absolute top-0 aspect-[288/330] w-full h-auto rounded-[60px] mt-1 overflow-hidden'>
         <Image
           alt={``}

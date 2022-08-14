@@ -55,8 +55,8 @@ const Cart = ({ products }: CartProps) => {
   }, 0);
 
   return (
-    <div className={`px-4 py-10 flex flex-col gap-5`}>
-      <div className={`self-start`}>
+    <div className={`py-10 flex flex-col bg-[#FAFAFA]`}>
+      <div className={`px-4 self-start mb-[20px]`}>
         <BreadCrumbs data={breadcrumbs()} />
       </div>
       {cart.length === 0 && CART_PAGE.cart.empty}
@@ -71,22 +71,24 @@ const Cart = ({ products }: CartProps) => {
               ></CartItem>
             );
           })}
-          <div className={`flex`}>
-            <div>{CART_PAGE.cart.sum}</div>
-            <div>{finalSum > 0 && finalSum - finalSum * discount} руб</div>
+          {orderState === 'preorder' && <PromoCode data={CART_PAGE.cart.promoCode} />}
+          <div className={`flex justify-between px-4 items-center mt-[27px]`}>
+            <div className={`${styles.total_price_title}`}>{CART_PAGE.cart.sum}</div>
+            <div className={`${styles.total_price_value}`}>
+              {finalSum > 0 && finalSum - finalSum * discount} руб
+            </div>
           </div>
         </>
       )}
       {orderState === 'preorder' && (
-        <>
-          <PromoCode data={CART_PAGE.cart.promoCode} />
+        <div className={`px-4 pt-[15px]`}>
           <UI.Button text={CART_PAGE.cart.buttons.order} onClick={() => setOrderState('order')} />
           <UI.Button bgColor={`white`} textColor={`black`} text={'Обновить корзину'} />
           <PromoBlocks.Society />
-        </>
+        </div>
       )}
       {orderState === 'order' && (
-        <>
+        <div className={`px-4`}>
           <Delivery data={CART_PAGE.delivery} />
 
           <Forms.OrderForm data={CART_PAGE.orderForm} />
@@ -103,9 +105,8 @@ const Cart = ({ products }: CartProps) => {
             <div></div>
           </div>
           <UI.Button text={CART_PAGE.cart.buttons.send} onClick={() => setOrderState('payment')} />
-        </>
+        </div>
       )}
-      
     </div>
   );
 };

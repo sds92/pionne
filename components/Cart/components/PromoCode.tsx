@@ -10,8 +10,8 @@ type Props = {
 
 const PromoCode = ({ data }: Props) => {
   return (
-    <div className={`${styles.promocode_top}`}>
-      <input type={`text`} placeholder={data.placeholder} />
+    <div className={`${styles.promocode_top} w-full mt-[40px] px-4`}>
+      <input className={`w-full rounded-sm border px-1 py-2`} type={`text`} placeholder={data.placeholder} />
     </div>
   );
 };

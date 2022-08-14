@@ -12,3 +12,4 @@ export * as UI from './UI';
 export * as PromoBlocks from './PromoBlocks';
 export * as Svg from './Svg';
 export * as Comments from './Comments';
+export * as Popups from './Popups';
