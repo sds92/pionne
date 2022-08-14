@@ -28,7 +28,9 @@ const SM = ({ handleMenu }: SMProps) => {
       {isOpen ? (
         <div className={`z-[60] flex flex-wrap min-h-screen px-4 pb-6 relative bg-[#FFF4F4] animate-fadein`}>
           <div className={`w-full h-[72px] flex items-center`}>
-            <Svg.Icons.Close className={`cursor-pointer`} onClick={() => setIsOpen(false)} />
+            <div className={`p-2`} onClick={() => setIsOpen(false)}>
+              <Svg.Icons.Close className={`cursor-pointer`} />
+            </div>
           </div>
           {MENU.SM.map(({ title, items }, i) => {
             return (
@@ -80,7 +82,9 @@ const SM = ({ handleMenu }: SMProps) => {
       ) : (
         <div className={`w-full h-[72px] flex ${isMain ? 'bg-[#FFF4F4]' : 'bg-white'}`}>
           <div className={`w-1/6 flex items-center justify-center`}>
-            <Svg.Icons.Menu className={`cursor-pointer`} onClick={() => setIsOpen(true)} />
+            <div className={`p-2`} onClick={() => setIsOpen(true)}>
+              <Svg.Icons.Menu className={`cursor-pointer`} />
+            </div>
           </div>
           <div className={`w-full flex items-center justify-center`}>
             <Svg.Logo

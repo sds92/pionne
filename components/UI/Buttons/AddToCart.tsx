@@ -13,7 +13,9 @@ const AddtoCart = ({ bgColor, textColor, onClick, lg }: Props) => {
     <div
       style={{ background: bgColor || '#000' }}
       className={`${
-        (lg && styles.add_to_cart_lg_text + ` w-[185px] h-[50px]`) || ` w-[290px] h-[54px]`
+        lg
+          ? styles.add_to_cart_lg_text + ` w-[185px] h-[50px]`
+          : styles.add_to_cart_sm_text + ` w-[195px] h-[46px]`
       } flex items-center justify-center border border-black rounded-full uppercase ${
         textColor ? textColor : 'text-white'
       }`}

@@ -1,0 +1,26 @@
+.comments_title {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+}
+
+.comments_autor {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+}
+
+.comments_text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+}
+.product_card_title {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+}

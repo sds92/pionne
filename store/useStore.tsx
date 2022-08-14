@@ -1,6 +1,8 @@
 import create from 'zustand';
 
 interface IStore {
+  products: IProduct[];
+  setProducts: (products: IProduct[]) => void;
   curCategory: string;
   setCurCategory: (val: string) => void;
   cart: ICartItem[];
@@ -10,7 +12,9 @@ interface IStore {
 
 export const useStore = create<IStore>((set) => ({
   curCategory: 'Все',
-  setCurCategory: (val: string) => set((s) => ({ s, curCategory: val })),
+  products: [],
+  setProducts: (products: IProduct[]) => set((s) => ({ ...s, products })),
+  setCurCategory: (val: string) => set((s) => ({ ...s, curCategory: val })),
   cart: [],
   getCart: () => {
     if (typeof window !== 'undefined') {

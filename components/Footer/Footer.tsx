@@ -5,6 +5,7 @@ import { MENU } from 'configs/pageData';
 import styles from './Footer.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 type FooterProps = {
   w: number;
@@ -13,11 +14,16 @@ type FooterProps = {
 const Footer = ({ w }: FooterProps) => {
   const router = useRouter();
   const isContacts = router.route === '/contacts';
-  const isProduct = /\/products\//.test(router.route)
+  const isProduct = /\/products\//.test(router.route);
   return (
-    <footer className={`flex flex-col border-t`}>
+    <footer className={`flex flex-col overflow-hidden bg-[#FAFAFA] relative`}>
+      <Image className={`${styles.bg}`} alt={``} src={`/images/footer_bg_1.webp`} layout={`fill`} objectFit={`cover`}/>
       {isContacts || isProduct ? (
-        <div className={`${styles.is_contacts} text-center px-8 py-8`}>Подбираем лучший уход<br/> для вашей кожи в рамках<br/> онлайн консультаций</div>
+        <div className={`${styles.is_contacts} text-center px-8`}>
+          Подбираем лучший уход
+          <br /> для вашей кожи в рамках
+          <br /> онлайн консультаций
+        </div>
       ) : (
         <div className={`${styles.contact_title} mt-10 px-4`}>
           Остались вопросы? <br /> Напишите нам в телеграм
@@ -28,7 +34,7 @@ const Footer = ({ w }: FooterProps) => {
       >
         Написать
       </div>
-      <div className={`w-full flex justify-center items-center py-4`}>
+      <div className={`w-full flex justify-center items-center py-4 mt-[330px]`}>
         <Svg.Logo />
       </div>
       <div className={`flex flex-col gap-4`}>
@@ -49,10 +55,10 @@ const Footer = ({ w }: FooterProps) => {
             <div key={`menu${i}`} className={`flex flex-col w-full items-center justify-center`}>
               {items.map(([_title, _href, option], ii) => {
                 return (
-                  <Link key={`menuitem${ii}`} href={_href} passHref>
+                  <Link key={`menuitem${ii}`} href={`/products`} passHref>
                     <div
                       className={`${styles.menu_item} my-1.5 cursor-pointer`}
-                      // onClick={() => setIsOpen(false)}
+                      onClick={() => console.log('`ss')}
                     >
                       {_title}
                     </div>

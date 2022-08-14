@@ -13,9 +13,9 @@ const BreadCrums = ({ data }: BreadCrumsProps) => {
         return (
           <React.Fragment key={`link${i}`}>
             <Link href={href}>
-              <div className={`${styles.link} cursor-pointer uppercase`}>{title}</div>
+              <div className={`${styles.link} cursor-pointer uppercase whitespace-nowrap`}>{title}</div>
             </Link>
-            {i !== data.length - 1 && <div className={`${styles.link} uppercase`}> &nbsp;{'/'}&nbsp;</div>}
+            {i !== data.length - 1 && <div className={`${styles.link} uppercase `}> &nbsp;{'/'}&nbsp;</div>}
           </React.Fragment>
         );
       })}

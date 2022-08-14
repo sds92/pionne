@@ -22,3 +22,7 @@
   line-height: 21px;
   text-align: center;
 }
+.bg {
+  filter: blur(10px);
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
