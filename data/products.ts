@@ -9,6 +9,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -49,6 +50,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -89,6 +91,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -129,6 +132,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -169,6 +173,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -209,6 +214,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -249,6 +255,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -289,6 +296,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -329,6 +337,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -369,6 +378,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -409,6 +419,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -449,6 +460,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -489,6 +501,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -529,6 +542,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -569,6 +583,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -609,6 +624,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',
@@ -649,6 +665,7 @@ export const products = [
       '/images/products/pionne_004.webp',
     ],
     title: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
+    shortTitle: 'Увлажняющая маска для волос ',
     meta: {
       description: 'Увлажняющая маска для волос с маслом кокоса и жожоба',
       keywords: 'dfsg  gf hgsfd gfhhgfhgfgfhdfdhg hgfd h gfdh hgfdhg fd',

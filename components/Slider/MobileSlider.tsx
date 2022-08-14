@@ -1,10 +1,7 @@
 import Carousel from './Carousel';
 import React from 'react';
 import Image from 'next/image';
-import useWindowSize from 'utils/useWindowSize';
 import Link from 'next/link';
-import useIntersectionObserver from 'utils/useIntersectionObserver';
-import RefComponent from './RefComponent';
 
 type Props = {
   images?: string[];
@@ -15,7 +12,6 @@ type Props = {
 };
 
 const MobileSlider = ({ images, id, children, setCurPhoto, curPhoto }: Props) => {
-  const { width } = useWindowSize();
   return (
     <>
       {/* @ts-ignore */}

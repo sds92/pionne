@@ -48,7 +48,7 @@ const SM = ({ product, i, comments }: Props) => {
         className={`flex flex-col gap-4 py-4 h-[calc(100vh-80px)] `}
       >
         {width < 640 && (
-          <div className={`h-full relative flex flex-col items-center justify-end`}>
+          <div className={`h-full max-h-[60%] relative flex flex-col items-center justify-end`}>
             <MobileSlider
               id={product.id}
               images={product.images}

@@ -3,6 +3,7 @@ interface IProduct {
   category: string;
   images: string[];
   title: string;
+  shortTitle: string;
   meta: {
     description: string[];
     keywords: string;

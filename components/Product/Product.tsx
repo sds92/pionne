@@ -17,7 +17,7 @@ const Product = ({ data }: ProductProps) => {
   const { width } = useWindowSize();
   const breadCrumbs = [
     ['Главная', '/'],
-    [`${data.title}`, `${data.id}`],
+    [`${data.shortTitle}`, `${data.id}`],
   ];
   const [curSrc, setCurSrc] = React.useState<string>(data.images[0]);
 
@@ -27,7 +27,7 @@ const Product = ({ data }: ProductProps) => {
   return (
     <div className={`flex flex-col py-8 px-4`}>
       <BreadCrumbs data={breadCrumbs} />
-      <div className={`relative flex flex-col w-full`}>
+      <div className={`relative flex flex-col w-full mt-[15px]`}>
         <div
           style={{
             // width: `${width}px`,
