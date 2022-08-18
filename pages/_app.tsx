@@ -15,14 +15,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (typeof window !== 'undefined') {
       window.addEventListener('storage', handleCartSync);
     }
-
-    if (cart.length === 0) getCart();
-
-
+    
     return () => {
       window.removeEventListener('storage', handleCartSync);
     };
   }, [cart, getCart, handleCartSync]);
+  
+  React.useEffect(() => {
+    getCart()
+  }, [getCart])
   
   return (
     <Layout>

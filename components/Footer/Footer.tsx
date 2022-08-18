@@ -47,6 +47,7 @@ const Footer = ({ w }: FooterProps) => {
       <div className={`w-full flex justify-center items-center py-4 mt-[330px]`}>
         <Svg.Logo />
       </div>
+      <div className={`w-full`}></div>
       <div className={`flex flex-col gap-4`}>
         <div className={`flex w-full gap-3 items-center justify-center`}>
           {CONTACTS.socials.map(({ icon, href }, i) => {

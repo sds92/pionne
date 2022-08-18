@@ -6,7 +6,6 @@ type LayoutProps = { children: React.ReactNode };
 
 const Layout = ({ children }: LayoutProps) => {
   const { showAddToCartPopup, setShowAddToCartPopup } = useStore();
-  console.log('🚀 ~ file: Layout.tsx ~ line 9 ~ Layout ~ showAddToCartPopup', showAddToCartPopup);
   const [w, setW] = React.useState<number | undefined>(undefined);
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
 
@@ -38,7 +37,7 @@ const Layout = ({ children }: LayoutProps) => {
 
   return w ? (
     <>
-      <Header w={w} handleMenu={[menuOpen, setMenuOpen]} />
+      <Header w={w} handleMobileMenu={[menuOpen, setMenuOpen]} />
       <main className={`${w < 600 ? 'pt-[72px]' : ''} h-full w-full relative overflow-hidden`}>
         {children}
       </main>

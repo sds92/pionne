@@ -11,10 +11,11 @@ type SliderMenuProps = {
 };
 
 const ProductMenu = ({ data, w }: SliderMenuProps) => {
-  const { setCurCategory, curCategory } = useStore();
+  const { setCurCategory, curCategory, setMobileMenuIsOpen, mobileMenuIsOpen } = useStore();
   const divRef = React.useRef<HTMLDivElement>(null);
   const [show, setShow] = React.useState<boolean>(false);
-  const isShow = useShow(divRef, 72);
+  const showBreakpoint = w > 600 ? 122 : 72;
+  const isShow = useShow(divRef, showBreakpoint);
 
   const handleScroll = React.useCallback(
     (menuItem: string) => {
@@ -48,9 +49,12 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
     } else {
       setShow(false);
     }
+  }, [isShow]);
+
+  React.useEffect(() => {
     if (!curCategory) return;
     handleScroll(curCategory);
-  }, [curCategory, handleScroll, isShow]);
+  }, [curCategory, handleScroll]);
 
   return (
     <>
@@ -75,8 +79,8 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
           })}
         </div>
       </div>
-      {show && (
-        <div className={`w-full z-50 fixed top-[72px] bg-white`}>
+      {show && !mobileMenuIsOpen && (
+        <div style={{ top: `${showBreakpoint}px` }} className={`w-full z-40 fixed bg-white shadow-md`}>
           <div className={`flex `}>
             {MAIN_PAGE.sliderMenu.map((menuItem, i) => {
               return (

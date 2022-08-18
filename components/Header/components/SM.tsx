@@ -9,26 +9,26 @@ import Link from 'next/link';
 import { useStore } from 'store/useStore';
 
 type SMProps = {
-  handleMenu: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  handleMobileMenu: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  isAtTop?: boolean
 };
 
-const SM = ({ handleMenu }: SMProps) => {
+const SM = ({ handleMobileMenu, isAtTop }: SMProps) => {
   const router = useRouter();
   const { lockScroll, unlockScroll } = useScrollLock();
-  const [isOpen, setIsOpen] = handleMenu;
   const isMain = router.route === '/' ? true : false;
-  const { cart } = useStore();
+  const { cart, mobileMenuIsOpen, setMobileMenuIsOpen } = useStore();
 
   React.useEffect(() => {
-    isOpen ? lockScroll() : unlockScroll();
-  }, [isOpen, lockScroll, unlockScroll]);
+    mobileMenuIsOpen ? lockScroll() : unlockScroll();
+  }, [mobileMenuIsOpen, lockScroll, unlockScroll]);
 
   return (
     <>
-      {isOpen ? (
-        <div className={`z-[60] flex flex-wrap min-h-screen px-4 pb-6 relative bg-[#FFF4F4] animate-fadein`}>
+      {mobileMenuIsOpen ? (
+        <div className={`z-50 flex flex-wrap min-h-screen px-4 pb-6 relative bg-[#FFF4F4] animate-fadein`}>
           <div className={`w-full h-[72px] flex items-center`}>
-            <div className={`p-2`} onClick={() => setIsOpen(false)}>
+            <div className={`p-2`} onClick={() => setMobileMenuIsOpen(false)}>
               <Svg.Icons.Close className={`cursor-pointer`} />
             </div>
           </div>
@@ -42,7 +42,7 @@ const SM = ({ handleMenu }: SMProps) => {
                       <div key={`menuitem${ii}`} onClick={() => router.replace(`/${_href}`)}>
                         <div
                           className={`${styles.menu_item} my-1.5 cursor-pointer`}
-                          onClick={() => setIsOpen(false)}
+                          onClick={() => setMobileMenuIsOpen(false)}
                         >
                           {_title}
                         </div>
@@ -82,7 +82,7 @@ const SM = ({ handleMenu }: SMProps) => {
       ) : (
         <div className={`w-full h-[72px] flex ${isMain ? 'bg-[#FFF4F4]' : 'bg-white'}`}>
           <div className={`w-1/6 flex items-center justify-center`}>
-            <div className={`p-2`} onClick={() => setIsOpen(true)}>
+            <div className={`p-2`} onClick={() => setMobileMenuIsOpen(true)}>
               <Svg.Icons.Menu className={`cursor-pointer`} />
             </div>
           </div>

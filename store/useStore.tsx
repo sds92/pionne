@@ -10,6 +10,8 @@ interface IStore {
   getCart: () => void;
   showAddToCartPopup: boolean;
   setShowAddToCartPopup: (val: boolean) => void;
+  mobileMenuIsOpen: boolean;
+  setMobileMenuIsOpen: (val: boolean) => void;
 }
 
 export const useStore = create<IStore>((set) => ({
@@ -33,4 +35,6 @@ export const useStore = create<IStore>((set) => ({
   },
   showAddToCartPopup: false,
   setShowAddToCartPopup: (val) => set((s) => ({ ...s, showAddToCartPopup: val })),
+  mobileMenuIsOpen: false,
+  setMobileMenuIsOpen: (val: boolean) => set((s) => ({ ...s, mobileMenuIsOpen: val })),
 }));
