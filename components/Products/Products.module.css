@@ -1,3 +1,10 @@
+.inline_category_title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 2px;
+}
+
 .product_title {
   font-family: 'Playfair Display';
   font-style: normal;
@@ -34,6 +41,14 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 140%;
+}
+
+.product_curimage {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 120%;
 }
 
 .product_price {

@@ -3,7 +3,7 @@ import { ProductListItem } from '.';
 import styles from '../Products.module.css';
 import { comments } from 'data/comments';
 import { PRODUCTS } from 'configs/products';
-import { InLineCategory, Item } from './InLineCategory';
+import { InLineCategory, InLineCategoryItem } from './InLineCategory';
 import Separator from '../Separator';
 import Comments from './Comments';
 
@@ -33,9 +33,9 @@ const LG = ({ data }: Props) => {
             <ProductListItem.LG key={`pr${i}`} product={product} i={i} comments={comments} />
             {count === 1 && (
               <>
-                <InLineCategory title={PRODUCTS.inLineCategory}>
+                <InLineCategory title={PRODUCTS.inLineCategory} l={filteredByCategory[PRODUCTS.inLineCategory].length}>
                   {filteredByCategory[PRODUCTS.inLineCategory].map((product, ii) => {
-                    return <Item key={`product${ii}`} product={product} />;
+                    return <InLineCategoryItem key={`product${ii}`} product={product} />;
                   })}
                 </InLineCategory>
                 <Separator id={3} />

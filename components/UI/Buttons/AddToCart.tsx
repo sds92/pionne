@@ -16,7 +16,7 @@ const AddtoCart = ({ bgColor, textColor, onClick, lg }: Props) => {
         lg
           ? styles.add_to_cart_lg_text + ` w-[185px] h-[50px]`
           : styles.add_to_cart_sm_text + ` w-[195px] h-[46px]`
-      } flex items-center justify-center border border-black rounded-full uppercase ${
+      } flex items-center justify-center border border-black rounded-full uppercase cursor-pointer ${
         textColor ? textColor : 'text-white'
       }`}
       onClick={onClick && onClick}

@@ -20,7 +20,7 @@ const LG = ({}: LGProps) => {
           objectPosition={`right`}
         />
       </div>
-      <div className={`w-full h-full flex items-end justify-center z-30 relative`}>
+      <div className={`w-full h-full flex items-end justify-center z-20 relative`}>
         <div className={`relative w-min h-min flex items-center justify-center mb-6`}>
           <SVGLocal.Decor w={'180'} h={'180'} className={`${styles.rotating} cursor-pointer`} />
           <SVGLocal.ArrowDown className={`absolute cursor-pointer`} />

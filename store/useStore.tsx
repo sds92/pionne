@@ -15,10 +15,16 @@ interface IStore {
 }
 
 export const useStore = create<IStore>((set) => ({
-  curCategory: 'Все',
   products: [],
   setProducts: (products: IProduct[]) => set((s) => ({ ...s, products })),
+  showAddToCartPopup: false,
+  setShowAddToCartPopup: (val) => set((s) => ({ ...s, showAddToCartPopup: val })),
+  mobileMenuIsOpen: false,
+  setMobileMenuIsOpen: (val: boolean) => set((s) => ({ ...s, mobileMenuIsOpen: val })),
+  // CATEGORIES
+  curCategory: 'Все',
   setCurCategory: (val: string) => set((s) => ({ ...s, curCategory: val })),
+  // CART
   cart: [],
   getCart: () => {
     if (typeof window !== 'undefined') {
@@ -33,8 +39,4 @@ export const useStore = create<IStore>((set) => ({
       set((s) => ({ ...s, cart: _cart.sort((a, b) => a.id.localeCompare(b.id)) }));
     }
   },
-  showAddToCartPopup: false,
-  setShowAddToCartPopup: (val) => set((s) => ({ ...s, showAddToCartPopup: val })),
-  mobileMenuIsOpen: false,
-  setMobileMenuIsOpen: (val: boolean) => set((s) => ({ ...s, mobileMenuIsOpen: val })),
 }));

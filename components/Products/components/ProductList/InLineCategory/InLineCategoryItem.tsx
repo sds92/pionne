@@ -1,4 +1,5 @@
 import { UI } from 'components';
+import Image from 'next/image';
 import React from 'react';
 import { useStore } from 'store/useStore';
 import { addToCart } from 'utils';
@@ -7,14 +8,16 @@ type Props = {
   product: IProduct;
 };
 
-const Item = ({ product }: Props) => {
+const InLineCategoryItem = ({ product }: Props) => {
   const { cart, setCart } = useStore();
   const handleAddToCart = () => {
     addToCart({ id: product.id, cart: cart, cb: setCart });
   };
   return (
-    <div className={`flex flex-col`}>
-      <div></div>
+    <div className={`flex flex-col w-[338px] mr-[144px]`}>
+      <div className={`relative w-[338px] h-[330px] rounded-[30px] overflow-hidden`}>
+        <Image alt={``} src={product.images[0]} layout={`fill`} objectFit={`cover`} />
+      </div>
       <div>{product.title}</div>
       <div>{product.info.description}</div>
       <div className={`flex`}>
@@ -30,4 +33,4 @@ const Item = ({ product }: Props) => {
   );
 };
 
-export default Item;
+export default InLineCategoryItem;

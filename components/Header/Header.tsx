@@ -17,7 +17,7 @@ const Header = ({ w, handleMobileMenu }: HeaderProps) => {
   return (
     <>
       <div ref={ref} id={`head`} className={`relative w-full`} />
-      <header className={`fixed w-full z-30  overflow-hidden ${inView ? 'border-b' : 'shadow-md'}`}>
+      <header className={`fixed w-full z-30  overflow-hidden ${inView ? 'border-b' : 'shadow-md '}`}>
         {w > 600 ? <LG isAtTop={inView}/> : <SM handleMobileMenu={handleMobileMenu} isAtTop={inView}/>}
       </header>
     </>
