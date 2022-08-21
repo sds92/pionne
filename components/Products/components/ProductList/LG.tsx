@@ -13,6 +13,7 @@ type Props = {
 };
 
 const LG = ({ data }: Props) => {
+  const [firstLast, setFirstLast] = React.useState<'first' | 'last' | 'center'>('first');
   const filteredByCategory = data.reduce((pre, cur) => {
     if (!pre[cur.category.toLocaleLowerCase()]) {
       pre[cur.category.toLocaleLowerCase()] = [];
@@ -21,7 +22,7 @@ const LG = ({ data }: Props) => {
     return pre;
   }, {} as { [key: string]: IProduct[] });
 
- let count = 0;
+  let count = 0;
 
   return (
     <div className={`flex flex-col overflow-hidden`}>
@@ -33,9 +34,23 @@ const LG = ({ data }: Props) => {
             <ProductListItem.LG key={`pr${i}`} product={product} i={i} comments={comments} />
             {count === 1 && (
               <>
-                <InLineCategory title={PRODUCTS.inLineCategory} l={filteredByCategory[PRODUCTS.inLineCategory].length}>
+                <InLineCategory
+                  title={PRODUCTS.inLineCategory}
+                  l={filteredByCategory[PRODUCTS.inLineCategory].length}
+                  arrowBlock={firstLast}
+                >
                   {filteredByCategory[PRODUCTS.inLineCategory].map((product, ii) => {
-                    return <InLineCategoryItem key={`product${ii}`} product={product} />;
+                    return (
+                      <InLineCategoryItem
+                        key={`product${ii}`}
+                        product={product}
+                        pos={ii}
+                        l={filteredByCategory[PRODUCTS.inLineCategory].length}
+                        setFirstLast={
+                            setFirstLast
+                        }
+                      />
+                    );
                   })}
                 </InLineCategory>
                 <Separator id={3} />

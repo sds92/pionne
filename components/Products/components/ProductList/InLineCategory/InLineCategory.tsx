@@ -1,28 +1,30 @@
 import { Icons } from 'components/Svg';
 import React from 'react';
 import styles from '../../../Products.module.css';
+
 type Props = {
   title: string;
   children?: React.ReactNode;
   l: number;
+  arrowBlock: 'first' | 'last' | 'center';
 };
 
-const InLineCategory = ({ children, title, l }: Props) => {
+const InLineCategory = ({ children, title, l, arrowBlock }: Props) => {
   const [curProduct, setCurProduct] = React.useState<number>(0);
   const [curPosition, setCurPosition] = React.useState<number>(0);
   const handleArrowClick = (val: string) => {
-    if (val === '+') {
-      if (curProduct < (l - 1)/2) {
+    if (val === '+' && arrowBlock !== 'last') {
+      if (curProduct < l - 1) {
         setCurProduct((s) => s + 1);
       } else {
         setCurProduct(0);
       }
     }
-    if (val === '-') {
+    if (val === '-' && arrowBlock !== 'first') {
       if (curProduct > 0) {
         setCurProduct((s) => s - 1);
       } else {
-        setCurProduct((l - 1)/2);
+        setCurProduct(l - 1);
       }
     }
   };
@@ -33,8 +35,7 @@ const InLineCategory = ({ children, title, l }: Props) => {
     if (!divRef.current) return;
     const step = divRef.current.getBoundingClientRect().width / l;
     setCurPosition(step * (curProduct + 1));
-    console.log("🚀 ~ file: InLineCategory.tsx ~ line 37 ~ InLineCategory ~ curPosition", curPosition)
-    }, [curPosition, curProduct, l]);
+  }, [curPosition, curProduct, l]);
 
   return (
     <div className={`flex flex-col ml-[calc((100%-1278px)/2)] bg-white `}>
@@ -50,7 +51,11 @@ const InLineCategory = ({ children, title, l }: Props) => {
         </div>
       </div>
       <div className={`relative w-full mt-[40px]  h-[calc(100vh-300px)]`}>
-        <div ref={divRef} style={{ transform: `translateX(${-curPosition}px)` }} className={`absolute flex transition-all`}>
+        <div
+          ref={divRef}
+          style={{ transform: `translateX(${-curPosition}px)` }}
+          className={`absolute flex transition-all`}
+        >
           {children}
         </div>
       </div>
