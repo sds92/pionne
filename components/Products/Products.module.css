@@ -23,6 +23,15 @@
   line-height: 120%;
 }
 
+.inline_category_product_title {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 120%;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
 .product_category_lg {
   font-weight: 500;
   font-size: 16px;
@@ -38,6 +47,12 @@
 }
 
 .product_description_lg {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 140%;
+}
+
+.inline_category_product_description {
   font-weight: 400;
   font-size: 18px;
   line-height: 140%;
@@ -65,6 +80,15 @@
   font-style: normal;
   font-weight: 400;
   font-size: 50px;
+  line-height: 120%;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+.inline_category_product_price {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
   line-height: 120%;
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
@@ -138,14 +162,42 @@
   line-height: 120%;
 }
 
+.comments_title_lg {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 120%;
+}
+
 .comments_autor {
   font-weight: 400;
   font-size: 20px;
   line-height: 120%;
+}
+.comments_autor_lg {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 2px;
 }
 
 .comments_text {
   font-weight: 400;
   font-size: 12px;
   line-height: 140%;
+}
+
+.comments_text_lg {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+}
+
+.comments_product_title_lg {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
 }

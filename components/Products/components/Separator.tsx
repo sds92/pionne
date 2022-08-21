@@ -41,27 +41,6 @@ const Separator = ({ id, data }: SeparatorProps) => {
         </div>
       );
     }
-    case 2: {
-      return (
-        <div className={`relative w-full my-4 px-4`}>
-          <div className={`w-full flex flex-col z-10 py-10`}>
-            <div className={`${styles.comments_title} mb-[27px] w-full`}>Ваши отзывы</div>
-            {width < 640 && (
-              <MobileSlider>
-                {data?.map((comment, i) => {
-                  return (
-                    <div className={`w-screen`} key={`comment${i}`}>
-                      <div className={`${styles.comments_autor} py-2`}>{comment.autor}</div>
-                      <div className={`${styles.comments_text} py-1`}>{comment.text}</div>
-                    </div>
-                  );
-                })}
-              </MobileSlider>
-            )}
-          </div>
-        </div>
-      );
-    }
     case 3: {
       return (
         <div className={`h-[450px] relative flex flex-col justify-center items-center`}>

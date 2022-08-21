@@ -11,7 +11,8 @@ type SliderMenuProps = {
 };
 
 const ProductMenu = ({ data, w }: SliderMenuProps) => {
-  const { setCurCategory, curCategory, mobileMenuIsOpen } = useStore();
+  const { setCurCategory, curCategory, mobileMenuIsOpen, isScrollign, setIsScrolling, shouldScroll } =
+    useStore();
   const divRef = React.useRef<HTMLDivElement>(null);
   const [show, setShow] = React.useState<boolean>(false);
   const showBreakpoint = w > 600 ? 122 : 72;
@@ -19,6 +20,7 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
 
   const handleScroll = React.useCallback(
     (menuItem: string) => {
+      setIsScrolling(true);
       if (menuItem.toLocaleLowerCase() === 'все') {
         const id = data[0].id.toString();
         const y = document?.getElementById(id)?.offsetTop;
@@ -27,6 +29,9 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
             top: y - 94,
             behavior: 'smooth',
           });
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 1000);
         return;
       }
       if (document !== undefined) {
@@ -38,9 +43,12 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
             top: y - 100,
             behavior: 'smooth',
           });
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 1000);
       }
     },
-    [data]
+    [data, setIsScrolling]
   );
 
   React.useEffect(() => {
@@ -53,8 +61,10 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
 
   React.useEffect(() => {
     if (!curCategory) return;
-    handleScroll(curCategory);
-  }, [curCategory, handleScroll]);
+    if (shouldScroll) {
+      handleScroll(curCategory);
+    }
+  }, [curCategory, handleScroll, shouldScroll]);
 
   return (
     <>
@@ -87,7 +97,7 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
                 <div
                   key={`menuitem${i}`}
                   className={`${styles.menuslider_item} ${styles.menuslider_item} ${
-                    curCategory === menuItem && `border-b-[2px] border-black`
+                    curCategory.toLocaleLowerCase() === menuItem.toLocaleLowerCase() && `border-b-[2px] border-black`
                   } cursor-pointer uppercase whitespace-nowrap mx-[10px] text-center`}
                   onClick={() => {
                     setCurCategory(menuItem);

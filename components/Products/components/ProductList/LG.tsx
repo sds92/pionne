@@ -13,7 +13,10 @@ type Props = {
 };
 
 const LG = ({ data }: Props) => {
-  const [firstLast, setFirstLast] = React.useState<'first' | 'last' | 'center'>('first');
+  const [firstLast, setFirstLast] = React.useState<{ first: boolean; last: boolean | undefined }>({
+    first: true,
+    last: undefined,
+  });
   const filteredByCategory = data.reduce((pre, cur) => {
     if (!pre[cur.category.toLocaleLowerCase()]) {
       pre[cur.category.toLocaleLowerCase()] = [];
@@ -30,14 +33,15 @@ const LG = ({ data }: Props) => {
         if (product.category.toLocaleLowerCase() === PRODUCTS.inLineCategory.toLocaleLowerCase()) return null;
         count += 1;
         return (
-          <>
-            <ProductListItem.LG key={`pr${i}`} product={product} i={i} comments={comments} />
+          <React.Fragment key={`pr${i}`}>
+            <ProductListItem.LG product={product} i={i} comments={comments} />
             {count === 1 && (
               <>
                 <InLineCategory
                   title={PRODUCTS.inLineCategory}
                   l={filteredByCategory[PRODUCTS.inLineCategory].length}
                   arrowBlock={firstLast}
+                  
                 >
                   {filteredByCategory[PRODUCTS.inLineCategory].map((product, ii) => {
                     return (
@@ -46,9 +50,7 @@ const LG = ({ data }: Props) => {
                         product={product}
                         pos={ii}
                         l={filteredByCategory[PRODUCTS.inLineCategory].length}
-                        setFirstLast={
-                            setFirstLast
-                        }
+                        setFirstLast={setFirstLast}
                       />
                     );
                   })}
@@ -58,13 +60,9 @@ const LG = ({ data }: Props) => {
             )}
             {count === 3 && <Comments.LG comments={comments} products={data} />}
             {count === 5 && <Separator id={4} />}
-          </>
+          </React.Fragment>
         );
       })}
-      {/* {Object.entries(filteredByCategory).map(([title, products], i) => {
-        return <div key={`category${i}`}>{title}</div>;
-      })} */}
-      <></>
     </div>
   );
 };

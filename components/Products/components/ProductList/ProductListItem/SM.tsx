@@ -85,9 +85,6 @@ const SM = ({ product, i, comments }: Props) => {
           />
         </div>
       </div>
-      {i === 1 && <Separator id={1} />}
-      {i === 3 && width < 640 && <Comments.SM comments={comments} />}
-      {i === 5 && <Separator id={5} />}
     </>
   );
 };

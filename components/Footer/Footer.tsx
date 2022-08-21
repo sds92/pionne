@@ -13,7 +13,7 @@ type FooterProps = {
 };
 
 const Footer = ({ w }: FooterProps) => {
-  const {curCategory, setCurCategory} = useStore()
+  const {curCategory, setCurCategory, setShouldScroll} = useStore()
   const router = useRouter();
   const isContacts = router.route === '/contacts';
   const isProduct = /\/products\//.test(router.route);
@@ -69,7 +69,10 @@ const Footer = ({ w }: FooterProps) => {
                   <Link key={`menuitem${ii}`} href={`/products`} passHref>
                     <div
                       className={`${styles.menu_item} my-1.5 cursor-pointer`}
-                      onClick={() => setCurCategory(option)}
+                      onClick={() => {
+                        setShouldScroll(true)
+                        setCurCategory(option)
+                      }}
                     >
                       {_title}
                     </div>

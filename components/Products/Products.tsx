@@ -22,7 +22,7 @@ const Products = ({ data, comments }: ProductProps) => {
         <>
           <ProductMenu data={data} w={w} />
           {w > 900 && <ProductList.LG data={data} comments={comments} />}
-          {w <= 900 && <ProductList.SM data={data} comments={comments} />}
+          {w <= 900 && <ProductList.SM  data={data} comments={comments} />}
         </>
       )}
     </div>

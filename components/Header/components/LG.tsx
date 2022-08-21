@@ -19,7 +19,7 @@ const LG = ({ isAtTop }: Props) => {
           {MENU.LG.items.map(([title, _href], i) => {
             if (title === 'Logo')
               return (
-                <Svg.Logo h={'77'} w={`200`} className={`mx-[31px] cursor-pointer`} onClick={() => router.replace('/')} />
+                <Svg.Logo key={`logo${i}`} h={'77'} w={`200`} className={`mx-[31px] cursor-pointer`} onClick={() => router.replace('/')} />
               );
             return (
               <div

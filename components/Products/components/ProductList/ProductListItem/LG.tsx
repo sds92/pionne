@@ -2,8 +2,6 @@ import React from 'react';
 
 import Link from 'next/link';
 import useWindowSize from 'utils/useWindowSize';
-import MobileSlider from 'components/Slider/MobileSlider';
-import { Separator } from '../..';
 import { useInView } from 'react-intersection-observer';
 import { useStore } from 'store/useStore';
 import styles from '../../../Products.module.css';
@@ -20,11 +18,11 @@ type Props = {
 
 const LG = ({ product, i, comments }: Props) => {
   const [curImage, setCurImage] = React.useState<number>(0);
-  const { curCategory, setCurCategory, cart, setCart } = useStore();
+  const { curCategory, setCurCategory, cart, setCart, isScrollign, setShouldScroll } = useStore();
   const { width } = useWindowSize();
   const { ref, inView, entry } = useInView({
     /* Optional options */
-    threshold: 0,
+    threshold: 1,
   });
 
   const handleAddToCart = () => {
@@ -50,9 +48,10 @@ const LG = ({ product, i, comments }: Props) => {
 
   React.useEffect(() => {
     if (inView) {
-      () => setCurCategory(product.category);
+      setShouldScroll(false);
+      !isScrollign && setCurCategory(product.category);
     }
-  }, [inView, product.category, setCurCategory]);
+  }, [inView, isScrollign, product.category, setCurCategory, setShouldScroll]);
 
   const description = product.info.description[curImage]
     ? product.info.description[curImage]
@@ -64,7 +63,7 @@ const LG = ({ product, i, comments }: Props) => {
         id={product.id.toString()}
         ref={ref}
         key={`product${i}`}
-        className={`bg-[#fafafa] py-4  h-[calc(100vh-100px)]`}
+        className={`bg-[#fafafa] py-4  h-[calc(100vh-100px)] border-b`}
       >
         <div className={`flex max-w-[1278px] mx-auto h-full`}>
           {/* left */}
@@ -78,7 +77,7 @@ const LG = ({ product, i, comments }: Props) => {
                 <Icons.ArrowLeft />
               </div>
               <div className={`${styles.product_curimage}`}>
-                {curImage + 1}/{product.images.length - 1}
+                {curImage + 1}/{product.images.length}
               </div>
               <div className={`ml-[42px] cursor-pointer`} onClick={() => handleArrowClick('+')}>
                 <Icons.ArrowRight />

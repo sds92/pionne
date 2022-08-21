@@ -12,6 +12,10 @@ interface IStore {
   setShowAddToCartPopup: (val: boolean) => void;
   mobileMenuIsOpen: boolean;
   setMobileMenuIsOpen: (val: boolean) => void;
+  isScrollign: boolean;
+  setIsScrolling: (val: boolean) => void;
+  shouldScroll: boolean;
+  setShouldScroll: (val: boolean) => void;
 }
 
 export const useStore = create<IStore>((set) => ({
@@ -39,4 +43,9 @@ export const useStore = create<IStore>((set) => ({
       set((s) => ({ ...s, cart: _cart.sort((a, b) => a.id.localeCompare(b.id)) }));
     }
   },
+  // SCROLLING
+  isScrollign: false,
+  setIsScrolling: (val) => set((s) => ({ ...s, isScrollign: val })),
+  shouldScroll: false,
+  setShouldScroll: (val) => set((s) => ({ ...s, shouldScroll: val })),
 }));

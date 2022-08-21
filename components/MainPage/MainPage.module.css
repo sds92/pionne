@@ -8,6 +8,14 @@
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
 
+.title_lg {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 70px;
+  line-height: 130%;
+}
+
 @-webkit-keyframes rotating /* Safari and Chrome */ {
   from {
     -webkit-transform: rotate(0deg);
