@@ -9,7 +9,6 @@ type Props = {
 
 const AddToCart = ({ product }: Props) => {
   const { cart } = useStore();
-  console.log('🚀 ~ file: AddToCart.tsx ~ line 11 ~ AddToCart ~ cart', cart);
   return (
     product && (
       <div className={`rounded-[15px] py-[23px] px-[21px] bg-black text-white flex flex-col`}>

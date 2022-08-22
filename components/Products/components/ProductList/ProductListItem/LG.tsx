@@ -70,7 +70,9 @@ const LG = ({ product, i, comments }: Props) => {
           {/* left */}
           <div className={`flex flex-col w-1/2 justify-center`}>
             <div className={`${styles.product_category_lg} uppercase mt-[30px]`}>{product.category}</div>
-            <div className={`${styles.product_title_lg} mt-[30px]`}>{product.title}</div>
+            <Link href={`products/${product.id}`} passHref>
+              <div className={`${styles.product_title_lg} mt-[30px] cursor-pointer`}>{product.title}</div>
+            </Link>
             <div className={`${styles.product_description_lg} mt-[30px]`}>{description}</div>
             {/* image slider controller*/}
             <div className={`flex items-center mt-[30px]`}>

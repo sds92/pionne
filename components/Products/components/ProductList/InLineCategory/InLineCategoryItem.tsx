@@ -5,6 +5,7 @@ import { useStore } from 'store/useStore';
 import { addToCart } from 'utils';
 import { useInView } from 'react-intersection-observer';
 import styles from '../../../Products.module.css';
+import Link from 'next/link';
 
 type Props = {
   product: IProduct;
@@ -38,7 +39,11 @@ const InLineCategoryItem = ({ product, setFirstLast, pos, l }: Props) => {
       <div className={`relative w-[338px] h-[330px] rounded-[30px] overflow-hidden`}>
         <Image alt={``} src={product.images[0]} layout={`fill`} objectFit={`cover`} />
       </div>
-      <div className={`${styles.inline_category_product_title} mt-[30px]`}>{product.title}</div>
+      <Link href={`products/${product.id}`} passHref>
+        <div className={`${styles.inline_category_product_title} mt-[30px] cursor-pointer`}>
+          {product.title}
+        </div>
+      </Link>
       <div className={`${styles.inline_category_product_description} mt-[30px]`}>
         {product.info.description[0]}
       </div>
