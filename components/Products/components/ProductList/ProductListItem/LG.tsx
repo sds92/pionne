@@ -18,7 +18,8 @@ type Props = {
 
 const LG = ({ product, i, comments }: Props) => {
   const [curImage, setCurImage] = React.useState<number>(0);
-  const { curCategory, setCurCategory, cart, setCart, isScrollign, setShouldScroll } = useStore();
+  const { curCategory, setCurCategory, cart, setCart, isScrollign, setShouldScroll, setShowAddToCartPopup } =
+    useStore();
   const { width } = useWindowSize();
   const { ref, inView, entry } = useInView({
     /* Optional options */
@@ -86,7 +87,10 @@ const LG = ({ product, i, comments }: Props) => {
             <div className={`flex mt-[30px] items-center`}>
               <div className={`${styles.product_price_lg} mr-[22px]`}>{product.price} р</div>
               <UI.Buttons.AddToCart
-                onClick={handleAddToCart}
+                onClick={() => {
+                  handleAddToCart();
+                  setShowAddToCartPopup(product);
+                }}
                 bgColor={`transparent`}
                 textColor={`black`}
                 lg={true}

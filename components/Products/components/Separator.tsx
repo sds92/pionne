@@ -15,10 +15,7 @@ const Separator = ({ id, data }: SeparatorProps) => {
   switch (id) {
     case 1: {
       return (
-        <div
-          style={{ height: `${(width * 262) / 287}px` }}
-          className={`relative w-full my-4`}
-        >
+        <div style={{ height: `${(width * 262) / 287}px` }} className={`relative w-full my-4`}>
           <Image
             className={`-z-10 rounded-[50px] overflow-hidden`}
             alt={``}
@@ -63,7 +60,7 @@ const Separator = ({ id, data }: SeparatorProps) => {
     }
     case 4: {
       return (
-        <div className={`h-[450px] relative flex flex-col justify-center items-center`}>
+        <div className={`h-[450px] relative flex flex-col justify-center items-center overflow-hidden`}>
           <Image
             className={`-z-10`}
             alt={``}
@@ -71,6 +68,7 @@ const Separator = ({ id, data }: SeparatorProps) => {
             layout={`fill`}
             objectFit={`cover`}
           />
+
           <div className={`${styles.separator_bg} w-full h-full absolute -z-10 overflow-hidden`}></div>
           <div className={`flex flex-col z-10 px-10 py-20 gap-7`}>
             <div className={`${styles.separator_text_lg} max-w-[983px]`}>
@@ -82,10 +80,7 @@ const Separator = ({ id, data }: SeparatorProps) => {
     }
     case 5: {
       return (
-        <div
-          style={{ height: `${(width * 330) / 287}px` }}
-          className={`relative w-full my-4`}
-        >
+        <div style={{ height: `${(width * 330) / 287}px` }} className={`relative w-full my-4`}>
           <Image
             className={`-z-10 rounded-[50px] overflow-hidden`}
             alt={``}

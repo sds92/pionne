@@ -9,8 +9,6 @@ const Layout = ({ children }: LayoutProps) => {
   const [w, setW] = React.useState<number | undefined>(undefined);
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
 
-  // const [showAddToCartPopup, setShowAddToCartPopup] = React.useState<boolean>(false);
-
   const divRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -29,7 +27,7 @@ const Layout = ({ children }: LayoutProps) => {
         if (!divRef.current) return;
         divRef.current.style.opacity = '0';
         setTimeout(() => {
-          setShowAddToCartPopup(false);
+          setShowAddToCartPopup(null);
         }, 0);
       }, 1000);
     }
@@ -45,9 +43,9 @@ const Layout = ({ children }: LayoutProps) => {
       {showAddToCartPopup && (
         <div
           ref={divRef}
-          className={`fixed flex justify-center items-center bottom-0 w-full transition-all duration-1000 opacity-0`}
+          className={`fixed flex justify-center items-center bottom-0 w-full transition-all duration-1000 opacity-0 z-50`}
         >
-          <Popups.AddToCart />
+          <Popups.AddToCart product={showAddToCartPopup}/>
         </div>
       )}
     </>

@@ -154,6 +154,13 @@
   letter-spacing: 2px;
 }
 
+.menuslider_item_lg {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 34px;
+  letter-spacing: 2px;
+}
+
 .comments_title {
   font-family: 'Playfair Display';
   font-style: normal;

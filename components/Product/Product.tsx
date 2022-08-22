@@ -7,7 +7,7 @@ import styles from './Product.module.css';
 import Image from 'next/image';
 import { useStore } from 'store/useStore';
 import { addToCart } from 'utils';
-import {comments} from 'data/comments'
+import { comments } from 'data/comments';
 
 type ProductProps = {
   data: IProduct;
@@ -15,7 +15,7 @@ type ProductProps = {
 
 const Product = ({ data }: ProductProps) => {
   const [curImg, setCurImg] = React.useState<number>(0);
-  const { cart, setCart } = useStore();
+  const { cart, setCart, setShowAddToCartPopup } = useStore();
   const { width } = useWindowSize();
   const breadCrumbs = [
     ['Главная', '/'],
@@ -91,7 +91,12 @@ const Product = ({ data }: ProductProps) => {
       <div className={`${styles.product_description} mt-4`}>Объем упаковки: {data.info.v}</div>
       <div className={`flex w-full justify-between items-center py-4 border-b`}>
         <div className={`${styles.product_price}`}>{data.price}р</div>
-        <UI.Buttons.AddToCart onClick={handleAddToCart} />
+        <UI.Buttons.AddToCart
+          onClick={() => {
+            handleAddToCart();
+            setShowAddToCartPopup(data);
+          }}
+        />
       </div>
       <div className={`flex flex-col`}>
         {data.info.special.map((special, i) => {
@@ -110,10 +115,8 @@ const Product = ({ data }: ProductProps) => {
       </div>
       <div className={`flex flex-col`}>
         {comments.map((comment, i) => {
-          if (comment.product !== data.id) return null
-          return (
-            <Comments.SM key={`comment${i}`} comment={comment} product={data}/>
-          )
+          if (comment.product !== data.id) return null;
+          return <Comments.SM key={`comment${i}`} comment={comment} product={data} />;
         })}
       </div>
     </div>

@@ -25,11 +25,11 @@ const LG = ({ comments, products }: Props) => {
             );
           if (i > 2) return null;
           return (
-            <div key={`comment${i}`} className={`w-1/4 pr-[125px]`}>
+            <div key={`comment${i}`} className={`w-1/3 pr-[125px]`}>
               <div className={`${styles.comments_autor_lg}`}>{comment.autor}</div>
               <div className={`${styles.comments_text_lg} mt-[22px]`}>{comment.text}</div>
               <div
-                className={`flex h-[63px] w-[226px] mt-[20px] items-center bg-white rounded-[15px] p-[8px] border border-[#F0F2F8]`}
+                className={`flex h-[63px] min-w-[226px] w-[80%] mt-[20px] items-center bg-white rounded-[15px] p-[8px] border border-[#F0F2F8]`}
               >
                 <div className={`w-[50px] h-[50px] rounded-[15px] overflow-hidden relative flex-none`}>
                   <Image

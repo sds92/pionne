@@ -20,7 +20,7 @@ const InLineCategory = ({ children, title, l, arrowBlock }: Props) => {
   const [curPosition, setCurPosition] = React.useState<number>(0);
   const { ref, inView, entry } = useInView({
     /* Optional options */
-    threshold: 0,
+    threshold: 0.8,
   });
 
   const handleArrowClick = (val: string) => {
@@ -50,6 +50,7 @@ const InLineCategory = ({ children, title, l, arrowBlock }: Props) => {
 
   React.useEffect(() => {
     // console.log("🚀 ~ file: title", title)
+    console.log("🚀 ~ file: InLineCategory.tsx ~ line 54 ~ React.useEffect ~ inView", inView)
     if (inView) {
       setShouldScroll(false);
       !isScrollign && setCurCategory(title);
@@ -57,7 +58,7 @@ const InLineCategory = ({ children, title, l, arrowBlock }: Props) => {
   }, [inView, isScrollign, setCurCategory, setShouldScroll, title]);
 
   return (
-    <div ref={ref} className={`flex flex-col ml-[calc((100%-1278px)/2)] bg-white overflow-hidden`}>
+    <div id={title.replaceAll(' ', '').toLocaleLowerCase()} ref={ref} className={`flex flex-col ml-[calc((100%-1278px)/2)] bg-white overflow-hidden`}>
       <div className={`flex items-center justify-between mr-[calc((100%-1278px))] mt-[120px]`}>
         <div className={`${styles.inline_category_title}`}>{title}</div>
         <div className={`flex items-center `}>

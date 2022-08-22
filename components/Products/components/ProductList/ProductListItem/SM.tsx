@@ -80,7 +80,7 @@ const SM = ({ product, i, comments }: Props) => {
           <UI.Buttons.AddToCart
             onClick={() => {
               handleAddToCart();
-              setShowAddToCartPopup(true);
+              setShowAddToCartPopup(product);
             }}
           />
         </div>

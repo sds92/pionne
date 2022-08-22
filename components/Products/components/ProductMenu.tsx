@@ -20,7 +20,9 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
 
   const handleScroll = React.useCallback(
     (menuItem: string) => {
+      if (document === undefined) return;
       setIsScrolling(true);
+
       if (menuItem.toLocaleLowerCase() === 'все') {
         const id = data[0].id.toString();
         const y = document?.getElementById(id)?.offsetTop;
@@ -34,19 +36,24 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
         }, 1000);
         return;
       }
-      if (document !== undefined) {
-        const id = data.find((product) => product.category.toLowerCase() === menuItem.toLowerCase())?.id;
-        if (!id) return;
-        const y = document?.getElementById(id)?.offsetTop;
-        y &&
-          window.scrollTo({
-            top: y - 100,
-            behavior: 'smooth',
-          });
-        setTimeout(() => {
-          setIsScrolling(false);
-        }, 1000);
+
+      const id = data.find((product) => product.category.toLowerCase() === menuItem.toLowerCase())?.id;
+      if (!id) {
+        return;
       }
+      let y = document?.getElementById(id)?.offsetTop;
+      if (!y) {
+        y = document?.getElementById(menuItem.replaceAll(' ', '').toLocaleLowerCase())?.offsetTop;
+      }
+      y &&
+        window.scrollTo({
+          top: y - 100,
+          behavior: 'smooth',
+        });
+      setTimeout(() => {
+        setIsScrolling(false);
+      }, 1000);
+      return;
     },
     [data, setIsScrolling]
   );
@@ -74,10 +81,12 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
             return (
               <div
                 key={`menuItem${i}`}
-                className={`${styles.menuslider_item} ${
+                className={` ${
                   curCategory.toLocaleLowerCase() === menuItem.toLocaleLowerCase() &&
                   `border-b-[2px] border-black`
-                } cursor-pointer uppercase whitespace-nowrap mx-[10px] text-center`}
+                } ${
+                  w > 900 ? `${styles.menuslider_item_lg} mx-[36px]` : `${styles.menuslider_item} mx-[10px]`
+                } cursor-pointer uppercase whitespace-nowrap  text-center delay-300 transition-all duration-75`}
                 onClick={() => {
                   setCurCategory(menuItem);
                   handleScroll(menuItem);
@@ -96,9 +105,12 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
               return (
                 <div
                   key={`menuitem${i}`}
-                  className={`${styles.menuslider_item} ${styles.menuslider_item} ${
-                    curCategory.toLocaleLowerCase() === menuItem.toLocaleLowerCase() && `border-b-[2px] border-black`
-                  } cursor-pointer uppercase whitespace-nowrap mx-[10px] text-center`}
+                  className={`${
+                    w > 900 ? `${styles.menuslider_item_lg} mx-[36px]` : `${styles.menuslider_item} mx-[10px]`
+                  } ${
+                    curCategory.toLocaleLowerCase() === menuItem.toLocaleLowerCase() &&
+                    `border-b-[2px] border-black`
+                  } cursor-pointer uppercase whitespace-nowrap mx-[10px] text-center delay-300 transition-all duration-75`}
                   onClick={() => {
                     setCurCategory(menuItem);
                     handleScroll(menuItem);

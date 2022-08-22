@@ -8,8 +8,8 @@ interface IStore {
   cart: ICartItem[];
   setCart: (cart: ICartItem[]) => void;
   getCart: () => void;
-  showAddToCartPopup: boolean;
-  setShowAddToCartPopup: (val: boolean) => void;
+  showAddToCartPopup: IProduct | null;
+  setShowAddToCartPopup: (val: IProduct|null) => void;
   mobileMenuIsOpen: boolean;
   setMobileMenuIsOpen: (val: boolean) => void;
   isScrollign: boolean;
@@ -21,7 +21,7 @@ interface IStore {
 export const useStore = create<IStore>((set) => ({
   products: [],
   setProducts: (products: IProduct[]) => set((s) => ({ ...s, products })),
-  showAddToCartPopup: false,
+  showAddToCartPopup: null,
   setShowAddToCartPopup: (val) => set((s) => ({ ...s, showAddToCartPopup: val })),
   mobileMenuIsOpen: false,
   setMobileMenuIsOpen: (val: boolean) => set((s) => ({ ...s, mobileMenuIsOpen: val })),

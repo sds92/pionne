@@ -10,14 +10,15 @@ type HeaderProps = {
 
 const Header = ({ w, handleMobileMenu }: HeaderProps) => {
   const router = useRouter();
+  const isHome = router.route === '/';
   const { ref, inView } = useInView({
     threshold: 0,
   });
 
   return (
     <>
-      <div ref={ref} id={`head`} className={`relative w-full`} />
-      <header className={`fixed w-full z-30  overflow-hidden ${inView ? 'border-b' : 'shadow-md '}`}>
+      <div ref={ref} id={`head`} className={`relative w-full ${!isHome && 'h-[122px]'}`} />
+      <header className={`fixed w-full z-30 top-0 overflow-hidden ${inView ? 'border-b' : 'shadow-md '}`}>
         {w > 600 ? <LG isAtTop={inView}/> : <SM handleMobileMenu={handleMobileMenu} isAtTop={inView}/>}
       </header>
     </>
