@@ -109,7 +109,7 @@ const ProductMenu = ({ data, w }: SliderMenuProps) => {
                     w > 900 ? `${styles.menuslider_item_lg} mx-[36px]` : `${styles.menuslider_item} mx-[10px]`
                   } ${
                     curCategory.toLocaleLowerCase() === menuItem.toLocaleLowerCase() &&
-                    `border-b-[2px] border-black`
+                    ` border-b-[2px] border-black`
                   } cursor-pointer uppercase whitespace-nowrap mx-[10px] text-center delay-300 transition-all duration-75`}
                   onClick={() => {
                     setCurCategory(menuItem);

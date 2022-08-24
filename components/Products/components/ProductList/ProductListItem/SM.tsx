@@ -19,7 +19,7 @@ type Props = {
 
 const SM = ({ product, i, comments }: Props) => {
   const [curPhoto, setCurPhoto] = React.useState<number>(0);
-  const { curCategory, setCurCategory, cart, setCart, setShowAddToCartPopup } = useStore();
+  const { curCategory, setCurCategory, cart, setCart, setShowAddToCartPopup, isScrollign, setShouldScroll } = useStore();
   const { width } = useWindowSize();
   const { ref, inView, entry } = useInView({
     /* Optional options */
@@ -32,9 +32,10 @@ const SM = ({ product, i, comments }: Props) => {
 
   React.useEffect(() => {
     if (inView) {
-      () => setCurCategory(product.category);
+      setShouldScroll(false);
+      !isScrollign && setCurCategory(product.category);
     }
-  }, [inView, product.category, setCurCategory]);
+  }, [inView, isScrollign, product, setCurCategory, setShouldScroll]);
 
   const description = product.info.description[curPhoto]
     ? product.info.description[curPhoto]
