@@ -23,6 +23,7 @@ const OrderForm = ({ data }: Props) => {
   const [formData, setFormData] = React.useState(initData);
   const [agreement, setAgreement] = React.useState(false);
 
+
   return (
     <>
       <div className={`flex items-start`}>

@@ -17,11 +17,11 @@ const SM = ({ comments, products }: Props) => {
           <MobileSlider>
             {comments?.map((comment, i) => {
               return (
-                <div className={`w-screen`} key={`comment${i}`}>
+                <div className={`w-[calc(100vw-10px)]`} key={`comment${i}`}>
                   <div className={`${styles.comments_autor} py-2`}>{comment.autor}</div>
-                  <div className={`${styles.comments_text} py-1`}>{comment.text}</div>
+                  <div className={`${styles.comments_text} my-1  max-h-[150px] pr-[10px]`}>{comment.text}</div>
                   <div
-                    className={`flex h-[63px] w-[226px] mt-[20px] items-center bg-white rounded-[15px] p-[8px] border border-[#F0F2F8]`}
+                    className={`flex h-[63px] w-[226px] mt-[24px] items-center bg-white rounded-[15px] p-[8px] border border-[#F0F2F8]`}
                   >
                     <div className={`w-[50px] h-[50px] rounded-[15px] overflow-hidden relative flex-none`}>
                       <Image

@@ -72,7 +72,7 @@ const SM = ({ product, i, comments }: Props) => {
         id={product.id.toString()}
         ref={ref}
         key={`product${i}`}
-        className={`flex flex-col py-4 h-[calc(100vh-80px)] `}
+        className={`flex flex-col pt-4 h-[calc(100vh-80px)] `}
       >
         {width < 640 && (
           <div className={`h-full max-h-[60%] relative flex flex-col items-center justify-end`}>
@@ -96,7 +96,7 @@ const SM = ({ product, i, comments }: Props) => {
           <div className={`${styles.product_title} px-4 mt-[24px]`}>{product.title}</div>
         </Link>
         <div className={`${styles.product_description} px-4 mt-[11px]`}>{description}</div>
-        <div className={`mt-[18px] flex w-full justify-between items-center border-b pb-8 px-4`}>
+        <div className={`mt-[18px] grow flex w-full justify-between items-center border-b pb-8 px-4`}>
           <div className={`${styles.product_price}`}>{product.price}&nbsp;р</div>
           <UI.Buttons.AddToCart
             onClick={() => {

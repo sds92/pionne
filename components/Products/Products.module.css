@@ -135,6 +135,9 @@
   line-height: 21px;
   text-align: center;
   color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
 }
 
 .separator_text_lg {
@@ -193,6 +196,11 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 140%;
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* number of lines to show */
+  line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .comments_text_lg {

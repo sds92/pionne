@@ -11,9 +11,9 @@ const AddToCart = ({ product }: Props) => {
   const { cart } = useStore();
   return (
     product && (
-      <div className={`rounded-[15px] py-[23px] px-[21px] bg-black text-white flex flex-col`}>
+      <div className={`rounded-[8px] py-[8px] px-[8px] bg-black text-white flex flex-col`}>
         <div className={`flex items-center`}>
-          <div className={`w-[50px] h-[50px] relative overflow-hidden rounded-[15px]`}>
+          <div className={`w-[50px] h-[50px] relative overflow-hidden rounded-[8px]`}>
             <Image alt={``} src={product.images[0] || ''} layout={`fill`} objectFit={`cover`} />
           </div>
           <div className={`${styles.title} ml-[14px]`}>{product.shortTitle}</div>

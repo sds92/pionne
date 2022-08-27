@@ -29,7 +29,7 @@ const Separator = ({ id, data }: SeparatorProps) => {
           <div
             className={`rounded-[50px] border border-[#B2C0D1] w-full h-full absolute translate-x-4 -translate-y-4`}
           ></div>
-          <div className={`flex flex-col z-10 px-10 py-20 gap-7`}>
+          <div className={`relative flex flex-col z-30 px-10 py-20 gap-7`}>
             <div className={`${styles.separator_title}`}>философия pionne</div>
             <div className={`${styles.separator_text}`}>
               Подбираем лучший уход для вашей кожи в рамках онлайн консультаций.

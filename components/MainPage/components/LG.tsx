@@ -7,6 +7,15 @@ import { MAIN_PAGE } from 'configs/pageData';
 type LGProps = {};
 
 const LG = ({}: LGProps) => {
+  const divRef = React.useRef<HTMLDivElement>(null);
+
+  const handleClick = () => {
+    if (!divRef.current) return;
+    window.scrollTo({
+      top: divRef.current.getBoundingClientRect().height,
+      behavior: 'smooth',
+    });
+  };
   return (
     <div className={`h-screen w-full relative bg-[#fff3ee] flex items-center justify-start`}>
       <div className={`absolute h-full w-full`}>
@@ -23,7 +32,7 @@ const LG = ({}: LGProps) => {
       </div>
       <div className={`${styles.title_lg} absolute max-w-[800px] ml-[20%]`}>{MAIN_PAGE.title}</div>
       <div className={`w-full h-full flex items-end justify-center z-20 relative`}>
-        <div className={`relative w-min h-min flex items-center justify-center mb-6`}>
+        <div className={`relative w-min h-min flex items-center justify-center mb-6`} onClick={handleClick}>
           <SVGLocal.Decor w={'180'} h={'180'} className={`${styles.rotating} cursor-pointer`} />
           <SVGLocal.ArrowDown className={`absolute cursor-pointer`} />
         </div>
