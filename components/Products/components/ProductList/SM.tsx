@@ -16,7 +16,7 @@ const SM = ({ data }: ProductListProps) => {
       {data?.map((product, i) => {
         return (
           <React.Fragment key={`pr${i}`}>
-            <ProductListItem.SM product={product} i={i} comments={comments} />;
+            <ProductListItem.SM product={product} i={i} comments={comments} />
             {i === 1 && <Separator id={1} />}
             {i === 3 && <Comments.SM comments={comments} products={data} />}
             {i === 5 && <Separator id={5} />}
@@ -29,4 +29,3 @@ const SM = ({ data }: ProductListProps) => {
 };
 
 export default SM;
-  
