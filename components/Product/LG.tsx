@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useStore } from 'store/useStore';
+import { addToCart } from 'utils';
 import useWindowSize from 'utils/useWindowSize';
 import styles from './Product.module.css';
 
