@@ -17,9 +17,9 @@ const Header = ({ w, handleMobileMenu }: HeaderProps) => {
 
   return (
     <>
-      <div ref={ref} id={`head`} className={`relative w-full ${isHome && w > 600 && 'h-[122px]'}`} />
+      <div ref={ref} id={`head`} className={`relative w-full ${!isHome && w > 600 && 'h-[122px]'}`} />
       <header className={`fixed w-full z-40 top-0 overflow-hidden ${inView ? 'border-b' : 'shadow-md '}`}>
-        {w > 600 ? <LG isAtTop={inView}/> : <SM handleMobileMenu={handleMobileMenu} isAtTop={inView}/>}
+        {w > 600 ? <LG isAtTop={inView} /> : <SM handleMobileMenu={handleMobileMenu} isAtTop={inView} />}
       </header>
     </>
   );

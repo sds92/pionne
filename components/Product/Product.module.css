@@ -31,3 +31,30 @@
   text-transform: uppercase;
   color: #ffffff;
 }
+.product_title_lg {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 120%;
+}
+.product_category_lg {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.product_description_lg {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 140%;
+}
+.product_price_lg {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 120%;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}

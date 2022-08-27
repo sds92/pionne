@@ -16,16 +16,24 @@ const Delivery = ({ data }: Props) => {
       <div className={`text-[12px]`}>
         {data.items.map(([title, description], i) => {
           return (
-            <div key={`delivery${i}`} className={`flex flex-col`}
-            onClick={() => setIsActive(i)}
-            >
+            <div key={`delivery${i}`} className={`flex flex-col`} onClick={() => setIsActive(i)}>
               <div className={`flex items-center`}>
                 <div
-                  className={`rounded-full w-[13px] h-[13px] flex-none border border-black mr-[8px] ${isActive === i && 'bg-black'}`}
+                  className={`rounded-full w-[13px] h-[13px] flex-none border border-black mr-[8px] ${
+                    isActive === i && 'bg-black'
+                  }`}
                 ></div>
                 <div>{title}</div>
               </div>
-              {isActive === i && <div className={`pointer-events-none`}>{description}</div>}
+              {isActive === i && (
+                <div
+                  className={`pointer-events-none ${
+                    isActive === i ? 'max-h-[50px]' : 'max-h-[0px]'
+                  } transition-all overflow-hidden`}
+                >
+                  {description}
+                </div>
+              )}
             </div>
           );
         })}

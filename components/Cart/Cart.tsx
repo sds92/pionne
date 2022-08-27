@@ -83,7 +83,6 @@ const Cart = ({ products }: CartProps) => {
       {orderState === 'preorder' && (
         <div className={`px-4 pt-[15px]`}>
           <UI.Button text={CART_PAGE.cart.buttons.order} onClick={() => setOrderState('order')} />
-          <UI.Button bgColor={`white`} textColor={`black`} text={'Обновить корзину'} />
           <PromoBlocks.Society />
         </div>
       )}

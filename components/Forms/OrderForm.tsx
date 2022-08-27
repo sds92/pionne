@@ -23,7 +23,6 @@ const OrderForm = ({ data }: Props) => {
   const [formData, setFormData] = React.useState(initData);
   const [agreement, setAgreement] = React.useState(false);
 
-
   return (
     <>
       <div className={`flex items-start`}>
@@ -40,12 +39,14 @@ const OrderForm = ({ data }: Props) => {
         {data.items.map(([name, type, placeholder, error], i) => {
           return (
             <div key={`input${i}`} className={`w-full h-[46px] border border-[#A9A9A9] mb-[13px]`}>
-              <input
-                className={`h-full w-full px-1`}
-                placeholder={placeholder}
-                value={formData[name]}
-                onChange={(e) => setFormData((s) => ({ ...s, [name]: e.target.value }))}
-              />
+              <UI.InputWrapper>
+                <input
+                  className={`h-full w-full px-1`}
+                  placeholder={placeholder}
+                  value={formData[name]}
+                  onChange={(e) => setFormData((s) => ({ ...s, [name]: e.target.value }))}
+                />
+              </UI.InputWrapper>
             </div>
           );
         })}
