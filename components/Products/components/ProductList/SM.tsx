@@ -29,3 +29,4 @@ const SM = ({ data }: ProductListProps) => {
 };
 
 export default SM;
+  
