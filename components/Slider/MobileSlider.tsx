@@ -18,17 +18,17 @@ const MobileSlider = ({ images, id, children, setCurPhoto, curPhoto }: Props) =>
       <Carousel mode='HORISONTAL' allowSnapping={true} setCurIndex={setCurPhoto}>
         {children
           ? children
-          : images?.map((src, index) => {
-              return (
-                <Link key={`product-${index}`} href={`products/${id}`} passHref>
-                  <div className={`px-4 h-full`}>
-                    <div className={`relative rounded-[50px] overflow-hidden h-full w-[calc(100vw-66px)]`}>
-                      <Image alt={``} src={src} layout={`fill`} objectFit={`cover`} />
+            : images?.map((src, index) => {
+                return (
+                  <Link key={`product-${index}`} href={`products/${id}`} passHref>
+                    <div className={`px-4 h-full`}>
+                      <div className={`relative rounded-[50px] overflow-hidden h-full w-[calc(100vw-66px)]`}>
+                        <Image alt={``} src={src} layout={`fill`} objectFit={`cover`} />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              );
-            }) || null}
+                  </Link>
+                );
+              }) || null}
       </Carousel>
     </>
   );

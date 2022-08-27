@@ -10,6 +10,9 @@ import styles from '../../../Products.module.css';
 import { addToCart } from 'utils';
 import Comments from '../Comments';
 import { UI } from 'components';
+import useCarousel from 'components/Carousel/SteroidCarousel';
+import Image from 'next/image';
+import UniversalImage from 'components/UI/UniversalImage';
 
 type Props = {
   i: number;
@@ -19,7 +22,8 @@ type Props = {
 
 const SM = ({ product, i, comments }: Props) => {
   const [curPhoto, setCurPhoto] = React.useState<number>(0);
-  const { curCategory, setCurCategory, cart, setCart, setShowAddToCartPopup, isScrollign, setShouldScroll } = useStore();
+  const { curCategory, setCurCategory, cart, setCart, setShowAddToCartPopup, isScrollign, setShouldScroll } =
+    useStore();
   const { width } = useWindowSize();
   const { ref, inView, entry } = useInView({
     /* Optional options */
@@ -41,6 +45,27 @@ const SM = ({ product, i, comments }: Props) => {
     ? product.info.description[curPhoto]
     : product.info.description[product.info.description.length - 1];
 
+  const { carousel } = useCarousel({
+    children: product.images.map((src, i) => {
+      return (
+        <div
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          key={`image${i}`}
+          // ref={i === 0 ? jkCardRef : null}
+          className={`h-full z-10 hover:shadow-md w-[calc(100vw-60px)] relative cursor-pointer overflow-hidden rounded-[50px] `}
+        >
+          <Image alt={``} src={src} layout={`fill`} objectFit={`cover`} />
+        </div>
+      );
+    }),
+    childMarginRight: 10,
+    disableShadows: true,
+    lockOnScroll: true,
+  });
+
   return (
     <>
       <div
@@ -51,12 +76,7 @@ const SM = ({ product, i, comments }: Props) => {
       >
         {width < 640 && (
           <div className={`h-full max-h-[60%] relative flex flex-col items-center justify-end`}>
-            <MobileSlider
-              id={product.id}
-              images={product.images}
-              setCurPhoto={setCurPhoto}
-              curPhoto={curPhoto}
-            />
+            <div className={`h-full w-full pl-[16px] pr-[8px]`}>{carousel}</div>
             <div className={`absolute flex z-10 bottom-[16px]`}>
               {product.images?.map((item, i) => {
                 return (
