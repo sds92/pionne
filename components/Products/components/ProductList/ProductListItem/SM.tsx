@@ -21,7 +21,7 @@ type Props = {
 };
 
 const SM = ({ product, i, comments }: Props) => {
-  const [curPhoto, setCurPhoto] = React.useState<number>(0);
+  // const [curIndex, setcurIndex] = React.useState<number>(0);
   const { curCategory, setCurCategory, cart, setCart, setShowAddToCartPopup, isScrollign, setShouldScroll } =
     useStore();
   const { width } = useWindowSize();
@@ -41,11 +41,7 @@ const SM = ({ product, i, comments }: Props) => {
     }
   }, [inView, isScrollign, product, setCurCategory, setShouldScroll]);
 
-  const description = product.info.description[curPhoto]
-    ? product.info.description[curPhoto]
-    : product.info.description[product.info.description.length - 1];
-
-  const { carousel } = useCarousel({
+  const { carousel, curIndex } = useCarousel({
     children: product.images.map((src, i) => {
       return (
         <div
@@ -66,6 +62,10 @@ const SM = ({ product, i, comments }: Props) => {
     lockOnScroll: true,
   });
 
+  const description = product.info.description[curIndex]
+    ? product.info.description[curIndex]
+    : product.info.description[product.info.description.length - 1];
+
   return (
     <>
       <div
@@ -83,7 +83,7 @@ const SM = ({ product, i, comments }: Props) => {
                   <div
                     key={`dot${i}`}
                     className={`rounded-full w-[6px] h-[6px] flex-none mx-[5px] ${
-                      curPhoto === i ? 'bg-white border border-black' : 'bg-black'
+                      curIndex === i ? 'bg-white border border-black' : 'bg-black'
                     }`}
                   ></div>
                 );

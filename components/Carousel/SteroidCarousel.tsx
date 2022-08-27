@@ -3,14 +3,7 @@ import clsx from 'clsx';
 import Fade from 'components/Transitions/Fade';
 import { useElementDimensions } from 'hooks/useElementDimensions';
 import useWindowSize from 'hooks/useWindowSize';
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useReducer,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { isMouse } from 'utils/isMouse';
 import { isTouch } from 'utils/isTouch';
 
@@ -55,18 +48,18 @@ interface HookProps {
 interface Props extends HookProps {
   next?: number;
   prev?: number;
+  setCurIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
 type DirectionType = 'toLeft' | 'toRight' | 'toTop' | 'toBottom';
 
-type EventType =
-  | React.MouseEvent<HTMLDivElement>
-  | React.TouchEvent<HTMLDivElement>;
+type EventType = React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>;
 type Timestamp = number;
 
 export const useCarousel = (props: HookProps) => {
   const [getPrevToggle, incrementGetPrev] = useReducer((val) => val + 1, 0);
   const [getNextToggle, incrementGetNext] = useReducer((val) => val + 1, 0);
+  const [curIndex, setCurIndex] = React.useState<number>(0);
   return {
     carousel: (
       <NewCarousel
@@ -76,12 +69,14 @@ export const useCarousel = (props: HookProps) => {
         disableShadows={props.disableShadows}
         lockOnScroll={props.lockOnScroll}
         resetScrollOnChildrenChange={props.resetScrollOnChildrenChange}
+        setCurIndex={setCurIndex}
       >
         {props.children}
       </NewCarousel>
     ),
     getNext: incrementGetNext,
     getPrev: incrementGetPrev,
+    curIndex: curIndex,
   };
 };
 
@@ -92,6 +87,7 @@ const NewCarousel = ({
   disableShadows = false,
   next,
   prev,
+  setCurIndex,
 }: Props) => {
   // return <></>;
   const { width } = useWindowSize();
@@ -101,19 +97,14 @@ const NewCarousel = ({
     return ['toBottom', 'toTop'];
   }, []);
   const [dir, setDir] = useState<DirectionType | null>(null);
-  const [accelerationHistory, setAccelerationHistory] = useState<
-    [Vector, Timestamp][]
-  >([]);
+  const [accelerationHistory, setAccelerationHistory] = useState<[Vector, Timestamp][]>([]);
   const [translation, setTranslation] = useState(() => {
     return new Vector();
   });
   const [childrenWidths, setChildrenWidths] = useState<{
     [key: string]: number;
   }>({});
-  const childrenWidth = Object.values(childrenWidths).reduce(
-    (acc, val) => acc + val,
-    0
-  );
+  const childrenWidth = Object.values(childrenWidths).reduce((acc, val) => acc + val, 0);
 
   const maxX = 0;
   const minX = useMemo(() => {
@@ -178,12 +169,8 @@ const NewCarousel = ({
 
   const getOffset = useCallback(
     (idx: number) => {
-      const widths: WidthType[] = Object.values(childrenWidths).map(
-        (val, idx) => [val, idx]
-      );
-      const offset = widths
-        .filter((val) => val[1] <= idx)
-        .reduce((acc, val) => acc + val[0], 0);
+      const widths: WidthType[] = Object.values(childrenWidths).map((val, idx) => [val, idx]);
+      const offset = widths.filter((val) => val[1] <= idx).reduce((acc, val) => acc + val[0], 0);
       return offset;
     },
     [childrenWidths]
@@ -191,9 +178,7 @@ const NewCarousel = ({
 
   const getIdx = useCallback(
     (_newTransX?: number) => {
-      const widths: WidthType[] = Object.values(childrenWidths).map(
-        (val, idx) => [val, idx]
-      );
+      const widths: WidthType[] = Object.values(childrenWidths).map((val, idx) => [val, idx]);
       const curTrans = _newTransX ? -_newTransX : -translation.x;
 
       for (let i = 0; i < widths.length - 1; i++) {
@@ -206,6 +191,11 @@ const NewCarousel = ({
     },
     [childrenWidths, getOffset, translation.x]
   );
+
+  React.useEffect(() => {
+    let _width = Object.values(childrenWidths).reduce((acc, val) => acc + val, 0);
+    setCurIndex(Math.abs(Math.round((translation.x / _width) * children.length)));
+  }, [children.length, childrenWidths, setCurIndex, translation.x]);
 
   const eventOnTouchEndHandler = () => {
     setDir(null);
@@ -258,10 +248,7 @@ const NewCarousel = ({
       // setAcceleration(new Vector(moveX, moveY));
       const acceleration = new Vector(moveX, moveY);
       // accelerationHistory.current.push([acceleration, Number(new Date())]);
-      setAccelerationHistory([
-        ...accelerationHistory,
-        [acceleration, Number(new Date())],
-      ]);
+      setAccelerationHistory([...accelerationHistory, [acceleration, Number(new Date())]]);
 
       let newTranslationX = translation.x + acceleration.x;
       if (newTranslationX > maxX) {
@@ -412,15 +399,10 @@ const NewCarousel = ({
         const animationDurationMs = 300;
         const numChildren = children.length;
         const avgChildWidth =
-          Object.values(childrenWidths).reduce((acc, val) => acc + val, 0) /
-          children.length;
-        const multipler =
-          Math.abs(velocity) > 70 ? numChildren : Math.abs(velocity) / 20;
+          Object.values(childrenWidths).reduce((acc, val) => acc + val, 0) / children.length;
+        const multipler = Math.abs(velocity) > 70 ? numChildren : Math.abs(velocity) / 20;
         const finalTranslation =
-          translation.x +
-          (velocity > 0
-            ? avgChildWidth * multipler
-            : -avgChildWidth * multipler);
+          translation.x + (velocity > 0 ? avgChildWidth * multipler : -avgChildWidth * multipler);
 
         newTranslation.x = finalTranslation;
         // setTranslation(new Vector(finalTranslation, translation.y));
@@ -441,6 +423,7 @@ const NewCarousel = ({
       }
       const idx = getIdx(newTranslation.x);
       handleSnap(idx);
+      setCurIndex(idx);
     }
   }, [
     accelerationHistory,
@@ -449,6 +432,7 @@ const NewCarousel = ({
     getIdx,
     handleSnap,
     minX,
+    setCurIndex,
     translation.x,
     translation.y,
   ]);
@@ -487,15 +471,7 @@ const NewCarousel = ({
       handleSnap(idx, 'toLeft');
       setLocalNext(next);
     }
-  }, [
-    handleSnap,
-    next,
-    getIdx,
-    localNext,
-    childrenWidths,
-    translation.x,
-    children.length,
-  ]);
+  }, [handleSnap, next, getIdx, localNext, childrenWidths, translation.x, children.length]);
   useEffect(() => {
     if (prev && prev != localPrev) {
       let idx = getIdx(translation.x) - 1;
@@ -505,7 +481,7 @@ const NewCarousel = ({
       handleSnap(idx, 'toRight');
       setLocalPrev(prev);
     }
-  }, [handleSnap, prev, getIdx, localPrev, childrenWidths, translation.x]);
+  }, [handleSnap, prev, getIdx, localPrev, childrenWidths, translation.x, setCurIndex]);
   // console.log(accelerationHistory);
 
   // ADD EVENT LISTENTER FOR MOUSE UP / TOUCH END
@@ -529,25 +505,23 @@ const NewCarousel = ({
   }, [removeScrollLock]);
 
   return (
-    <div className="relative h-full w-full">
+    <div className='relative h-full w-full'>
       {/* LEFT SHADOW */}
       <Fade shouldRender={showLeftShadow}>
         <div
           style={{
-            background:
-              'linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0))',
+            background: 'linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0))',
           }}
-          className="h-full absolute left-0 top-0 z-50 w-[42px] "
+          className='h-full absolute left-0 top-0 z-50 w-[42px] '
         />
       </Fade>
       {/* RIGHT SHADOW */}
       <Fade shouldRender={showRightShadow}>
         <div
           style={{
-            background:
-              'linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0))',
+            background: 'linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0))',
           }}
-          className="h-full absolute right-0 top-0 z-50 w-[42px]"
+          className='h-full absolute right-0 top-0 z-50 w-[42px]'
         />
       </Fade>
 
@@ -570,9 +544,7 @@ const NewCarousel = ({
         onTouchEnd={moveEndHandler}
       >
         {/* Needed to set height of the container */}
-        {children.length > 0 && (
-          <div className="opacity-0 pointer-events-none">{children[0]}</div>
-        )}
+        {children.length > 0 && <div className='opacity-0 pointer-events-none'>{children[0]}</div>}
         <div
           ref={windowRef}
           className={clsx(
